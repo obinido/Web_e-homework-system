@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljx.HomeworkSystem.repository.KnowledgeRepository">
+    <select id="listSubject" parameterType="Subject" resultType="Subject">
+        select * from subject limit 100
+    </select>
+    <select id="selectSubject" parameterType="Integer" resultType="Subject">
+        select * from subject where id = #{id} limit 1
+    </select>
+    <select id="selectSubjectByName" parameterType="String" resultType="Subject">
+        select * from subject where name = #{name} limit 1
+    </select>
+    <select id="listKnowledge" parameterType="Integer" resultType="Knowledge">
+        select * from knowledge where subject_id = #{id}
+    </select>
+    <select id="selectKnowledge" parameterType="Integer" resultType="Knowledge">
+        select * from knowledge where id = #{id} limit 1
+    </select>
+    <select id="selectKnowledgeByName" resultType="Knowledge">
+        select * from knowledge where subject_id = #{subject_id} and title = #{name} limit 1
+    </select>
+    <select id="isSubject" parameterType="String" resultType="Subject">
+        select * from subject where name = #{name} limit 1
+    </select>
+    <select id="isKnowledge" resultType="Knowledge">
+        select * from knowledge where subject_id = #{subjectID} and title = #{title} limit 1
+    </select>
+    <insert id="addSubject" parameterType="Subject">
+        insert into subject (name, introduction) values(#{name}, #{introduction})
+    </insert>
+    <insert id="addKnowledge" parameterType="Knowledge">
+        insert into knowledge (subject_id, title, content) values(#{subject_id}, #{title}, #{content})
+    </insert>
+    <update id="modifySubject" parameterType="Subject">
+        update subject set name=#{name}, introduction=#{introduction} where id=#{id}
+    </update>
+    <update id="modifyKnowledge" parameterType="Knowledge">
+        update knowledge set title=#{title}, content=#{content} where id=#{id}
+    </update>
+    <insert id="addDependency">
+        insert into knowledge_dependency (knowledge_id, dependent_knowledge_id) values(#{id}, #{dep_id})
+    </insert>
+    <select id="dropDependency">
+        DELETE FROM knowledge_dependency where knowledge_id=#{id}
+    </select>
+    <select id="listImageOfUser" parameterType="User" resultType="Image">
+        SELECT * FROM image WHERE user_email=#{email}
+    </select>
+    <insert id="addImage">
+        insert into image (user_email, filename, new_name) values(#{user.email}, #{image.filename}, #{image.new_name})
+    </insert>
+    <delete id="deleteImage">
+        delete from image where id=#{id}
+    </delete>
+    <select id="selectImage" resultType="Image">
+        select * from image where id=#{id} limit 1
+    </select>
+</mapper>

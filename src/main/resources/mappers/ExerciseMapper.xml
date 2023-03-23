@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljx.HomeworkSystem.repository.ExerciseRepository">
+    <select id="selectExerciseByID" parameterType="Integer" resultType="Exercise">
+        select * from exercise where id = #{id} limit 1
+    </select>
+    <select id="selectExercise" parameterType="Integer" resultType="Exercise">
+        select * from exercise where knowledge_id = #{knowledge_id}
+    </select>
+    <insert id="addExercise" parameterType="Exercise">
+        insert into exercise (knowledge_id, answer, content, type) values(#{knowledge_id}, #{answer}, #{content}, #{type})
+    </insert>
+    <update id="modifyExercise" parameterType="Exercise">
+        update exercise set content=#{content}, answer=#{answer}, type=#{type} where id=#{id}
+    </update>
+    <insert id="recordSolutionHistory" parameterType="Answer">
+        insert into answer(user_email, exercise_id, answer) values(#{user_email}, #{exercise_id}, #{answer})
+    </insert>
+    <select id="selectAnswerByUser" resultType="Answer">
+        select * from answer where exercise_id = #{id} and user_email = #{email}
+    </select>
+    <select id="selectAnswerByUserAndSubject" resultType="Answer">
+        select answer.* from answer, exercise, knowledge where answer.exercise_id=exercise.id AND exercise.knowledge_id=knowledge.id and knowledge.subject_id=#{id} and user_email = #{email}
+    </select>
+    <select id="selectAnswerByExerciseID" resultType="Answer">
+        select * from answer where exercise_id = #{id} order by create_time desc
+    </select>
+    <select id="selectAnswerByID" resultType="Answer">
+        select * from answer where id = #{id} limit 1
+    </select>
+    <update id="modifyAnswer" parameterType="Answer">
+        update answer set is_right=#{is_right} where id=#{id}
+    </update>
+</mapper>
