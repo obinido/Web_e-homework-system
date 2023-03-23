@@ -27,7 +27,9 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 
     @Override
     public String listSubject(HttpSession session, Model model) {
-        List<Subject> subjects = knowledgeRepository.listSubject();
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", session.getAttribute("user"));
+        List<Subject> subjects = knowledgeRepository.listSubject(user);
         for (Subject subject : subjects) {
             subject.setIntroduction(Auxiliary.modifyContent(subject.getIntroduction()));
         }

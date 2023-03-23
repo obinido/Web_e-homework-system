@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface KnowledgeRepository {
-    List<Subject> listSubject();
+    List<Subject> listSubject(User user);
 
     Subject selectSubject(Integer id);
 
