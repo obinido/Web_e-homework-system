@@ -3,6 +3,7 @@ package com.ljx.HomeworkSystem.repository;
 import com.ljx.HomeworkSystem.entity.Image;
 import com.ljx.HomeworkSystem.entity.Knowledge;
 import com.ljx.HomeworkSystem.entity.Subject;
+import com.ljx.HomeworkSystem.entity.Mapping;
 import com.ljx.HomeworkSystem.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,6 +13,10 @@ import java.util.List;
 @Mapper
 public interface KnowledgeRepository {
     List<Subject> listSubject(User user);
+
+    List<User> listTeacher();
+
+    List<User> listStudent();
 
     Subject selectSubject(Integer id);
 
@@ -30,6 +35,8 @@ public interface KnowledgeRepository {
     int addSubject(Subject subject);
 
     int addKnowledge(Knowledge knowledge);
+
+    int addMap(Mapping mapping);
 
     int modifySubject(Subject subject);
 

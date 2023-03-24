@@ -10,7 +10,7 @@
     <meta content="Jiaxin Liang" name="author">
 
     <base th:href="@{/}">
-    <title>添加课程</title>
+    <title>添加选课</title>
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">
@@ -71,14 +71,14 @@
             </div>
 
             <!-- Nav Item -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/knowledge/subject/toAdd}">
                     <i class="fas fa-fw fa-plus-square"></i>
                     <span>添加课程</span></a>
             </li>
 
             <!-- Nav Item -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" th:href="@{/knowledge/toAddMap}">
                     <i class="fas fa-fw fa-graduation-cap"></i>
                     <span>添加选课</span></a>
@@ -157,7 +157,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">添加课程</h1>
+                    <h1 class="h3 mb-0 text-gray-800">添加选课</h1>
                 </div>
 
                 <!-- Content Column -->
@@ -166,21 +166,20 @@
                     <!-- Blog -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 ">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">课程内容</h6>
+                            <h6 class="m-0 font-weight-bold text-primary text-center">选课信息</h6>
                         </div>
                         <div class="card-body">
-                            <form class="user" method="post" th:action="@{/knowledge/subject/add}"
-                                  th:object="${subject}">
+                            <form class="user p-5" method="post" th:action="@{/knowledge/addMap}" th:object="${mapping}">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="请输入课程名称" th:field="*{name}" type="text">
-                                    <span class="small" th:errors="*{name}"></span>
+                                    <label>请选择课程：</label>
+                                        <select class="form-control user-select" th:field="*{subject_id}">
+                                            <option disabled value="-1">请选择课程</option>
+                                            <th:block th:each="subject: ${subjects}">
+                                                <option th:text="${subject.name}"
+                                                        th:value="${subject.id}"></option>
+                                            </th:block>
+                                        </select>
                                 </div>
-
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="请输入课程介绍" rows="10"
-                                              th:field="*{introduction}"></textarea>
-                                </div>
-
                                 <div class="form-group">
                                     <input class="btn btn-primary btn-user btn-block" type="submit" value="提交">
                                     <div class="text-center">

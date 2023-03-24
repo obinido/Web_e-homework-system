@@ -1,9 +1,6 @@
 package com.ljx.HomeworkSystem.controller;
 
-import com.ljx.HomeworkSystem.entity.Image;
-import com.ljx.HomeworkSystem.entity.Knowledge;
-import com.ljx.HomeworkSystem.entity.Subject;
-import com.ljx.HomeworkSystem.entity.User;
+import com.ljx.HomeworkSystem.entity.*;
 import com.ljx.HomeworkSystem.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +38,17 @@ public class KnowledgeController extends AuthorityController {
         }
         model.addAttribute("user", user);
         return "addSubject";
+    }
+
+    @RequestMapping("/toAddMap")
+    public String toAddMap(@ModelAttribute("mapping") Mapping mapping, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user.getUsertype() == 1) {
+            model.addAttribute("errorMessage", "您没有权限！");
+            return "errorPage";
+        }
+        model.addAttribute("user", user);
+        return knowledgeService.toAddMap(session, model);
     }
 
     @RequestMapping("/detail/toAdd")
@@ -101,6 +109,20 @@ public class KnowledgeController extends AuthorityController {
             return "addKnowledge";
         }
         return knowledgeService.addKnowledge(knowledge, session, model);
+    }
+
+    @RequestMapping("/addMap")
+    public String addMap(@ModelAttribute("mapping") @Validated Mapping mapping, BindingResult rs, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user.getUsertype() == 1) {
+            model.addAttribute("errorMessage", "您没有权限！");
+            return "errorPage";
+        }
+        if (rs.hasErrors()) // 验证失败
+        {
+            return "addSubject";
+        }
+        return knowledgeService.addMap(mapping, session, model);
     }
 
     @RequestMapping("/subject/modify")

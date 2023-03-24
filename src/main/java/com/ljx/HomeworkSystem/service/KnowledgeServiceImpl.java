@@ -1,10 +1,7 @@
 package com.ljx.HomeworkSystem.service;
 
 import com.ljx.HomeworkSystem.auxiliary.Auxiliary;
-import com.ljx.HomeworkSystem.entity.Image;
-import com.ljx.HomeworkSystem.entity.Knowledge;
-import com.ljx.HomeworkSystem.entity.Subject;
-import com.ljx.HomeworkSystem.entity.User;
+import com.ljx.HomeworkSystem.entity.*;
 import com.ljx.HomeworkSystem.repository.KnowledgeRepository;
 import com.ljx.HomeworkSystem.repository.RecommendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +30,6 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         for (Subject subject : subjects) {
             subject.setIntroduction(Auxiliary.modifyContent(subject.getIntroduction()));
         }
-        model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("subjects", subjects);
         return "index";
     }
@@ -110,6 +106,22 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             }
         }
         return ("redirect:/subject/progress?id=" + (subject.getId()));
+    }
+
+    @Override
+    public String toAddMap(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
+        model.addAttribute("teachers", knowledgeRepository.listTeacher());
+        model.addAttribute("students", knowledgeRepository.listStudent());
+        model.addAttribute("subjects", knowledgeRepository.listSubject(user));
+        return "addMap";
+    }
+
+    @Override
+    public String addMap(Mapping mapping, HttpSession session, Model model) {
+        knowledgeRepository.addMap(mapping);
+        return "redirect:/knowledge/toAddMap";
     }
 
     @Override
@@ -198,7 +210,6 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     @Override
     public String deleteImage(Integer id, HttpSession session, Model model, HttpServletRequest request) {
         String path = request.getServletContext().getRealPath("/images/");
-        // String path = "/Users/fxb/Desktop/大三上/Java语言程序设计/FinalProject/Exercise-Web-Online/src/main/resources/static/images";
         Image image = knowledgeRepository.selectImage(id);
         File filePath = new File(path + File.separator + image.getNew_name());
         filePath.delete();
