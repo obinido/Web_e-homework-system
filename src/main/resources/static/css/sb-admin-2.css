@@ -166,7 +166,7 @@ a {
 
 a:hover {
     color: #3ba53a;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 a:not([href]):not([class]) {
@@ -4719,7 +4719,7 @@ input[type="button"].btn-block {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid #e3e6f0;
+    border: 1px solid #fff;
     border-radius: 0.35rem;
 }
 
@@ -4780,8 +4780,8 @@ input[type="button"].btn-block {
 .card-header {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: #f8f9fc;
-    border-bottom: 1px solid #e3e6f0;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
 }
 
 .card-header:first-child {
