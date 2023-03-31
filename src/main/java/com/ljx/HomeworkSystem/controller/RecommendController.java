@@ -26,6 +26,11 @@ public class RecommendController extends AuthorityController {
         return recommendService.knowledgeProgress(session, model, id);
     }
 
+    @RequestMapping("homework/progress")
+    public String homeworkProgress(HttpSession session, Model model, Integer id) {
+        return recommendService.homeworkProgress(session, model, id);
+    }
+
     @RequestMapping("exercise/recommend")
     public String exerciseRecommend(@ModelAttribute("myAnswer") @Validated Answer answer, HttpSession session, Model model, Integer id) {
         return recommendService.exerciseRecommend(session, model, id);

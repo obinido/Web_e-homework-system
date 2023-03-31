@@ -4,6 +4,7 @@ import com.ljx.HomeworkSystem.auxiliary.Auxiliary;
 import com.ljx.HomeworkSystem.entity.*;
 import com.ljx.HomeworkSystem.repository.ExerciseRepository;
 import com.ljx.HomeworkSystem.repository.KnowledgeRepository;
+import com.ljx.HomeworkSystem.repository.HomeworkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import java.util.Map;
 public class ExerciseServiceImpl implements ExerciseService {
     @Autowired
     private KnowledgeRepository knowledgeRepository;
+    @Autowired
+    private HomeworkRepository homeworkRepository;
     @Autowired
     private ExerciseRepository exerciseRepository;
 
@@ -30,6 +33,32 @@ public class ExerciseServiceImpl implements ExerciseService {
         // model.addAttribute("knowledgeList", knowledgeList);
         // model.addAttribute("currentKnowledgeID", knowledge_id);
         model.addAttribute("currentTitle", knowledge.getTitle());
+        for (Exercise exercise : exerciseList) {
+            if (exercise.getType() == 1) {
+                Map<String, Object> result = Auxiliary.modifyRatioExercise(exercise.getContent());
+                String modifiedContent = (String) result.get("modified_str");
+                Integer opt_num = (Integer) result.get("opt_num");
+                exercise.setContent(modifiedContent);
+                exercise.setOptNum(opt_num);
+            }
+            exercise.setContent(Auxiliary.modifyContent(exercise.getContent()));
+            exercise.setAnswer(Auxiliary.modifyContent(exercise.getAnswer()));
+        }
+        model.addAttribute("exercises", exerciseList);
+        return "exercise";
+    }
+
+    @Override
+    public String showExercise(HttpSession session, Model model, Integer homework_id) {
+        Homework homework = homeworkRepository.selectHomework(homework_id);
+        Subject subject = homeworkRepository.selectSubject(homework.getSubject_id());
+        // List<Knowledge> knowledgeList = knowledgeRepository.listKnowledge(knowledge.getSubject_id());
+        List<Exercise> exerciseList = exerciseRepository.selecthwExercise(homework_id);
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("subject", subject);
+        // model.addAttribute("knowledgeList", knowledgeList);
+        // model.addAttribute("currentKnowledgeID", knowledge_id);
+        model.addAttribute("currentTitle", homework.getTitle());
         for (Exercise exercise : exerciseList) {
             if (exercise.getType() == 1) {
                 Map<String, Object> result = Auxiliary.modifyRatioExercise(exercise.getContent());

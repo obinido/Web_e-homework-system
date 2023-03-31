@@ -57,6 +57,12 @@
                 <span>课程内容</span></a>
         </li>
 
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${subject.id}">
+                <i class="fas fa-fw fa-book"></i>
+                <span>作业清单</span></a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" th:href="@{subject/progress} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-book"></i>

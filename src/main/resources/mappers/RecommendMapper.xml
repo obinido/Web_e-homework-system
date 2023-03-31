@@ -18,8 +18,15 @@
         SELECT SUM(max) as sum FROM (SELECT MAX(answer.is_right) as max FROM answer, exercise
         where answer.exercise_id=exercise.id and exercise.knowledge_id=#{knowledge.id} and answer.user_email=#{user.email} GROUP BY exercise.id HAVING max != -1) as T;
     </select>
+    <select id="getHomeworkProgress" resultType="Integer">
+        SELECT SUM(max) as sum FROM (SELECT MAX(answer.is_right) as max FROM answer, exercise
+        where answer.exercise_id=exercise.id and exercise.homework_id=#{homework.id} and answer.user_email=#{user.email} GROUP BY exercise.id HAVING max != -1) as T;
+    </select>
     <select id="getKnowledgeNum" resultType="Integer">
         SELECT COUNT(*) FROM exercise WHERE exercise.knowledge_id=#{knowledge.id};
+    </select>
+    <select id="getHomeworkNum" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id};
     </select>
     <select id="getDependencies" parameterType="Knowledge" resultType="Integer">
         SELECT dependent_knowledge_id FROM knowledge_dependency where knowledge_id=#{id};

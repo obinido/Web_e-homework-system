@@ -9,6 +9,9 @@
     <select id="selectExercise" parameterType="Integer" resultType="Exercise">
         select * from exercise where knowledge_id = #{knowledge_id}
     </select>
+    <select id="selecthwExercise" parameterType="Integer" resultType="Exercise">
+        select * from exercise where homework_id = #{homework_id}
+    </select>
     <insert id="addExercise" parameterType="Exercise">
         insert into exercise (knowledge_id, answer, content, type) values(#{knowledge_id}, #{answer}, #{content}, #{type})
     </insert>

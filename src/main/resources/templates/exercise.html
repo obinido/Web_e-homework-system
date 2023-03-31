@@ -175,12 +175,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h6 class="m-0 font-weight-bold text-primary" th:unless="${exercise.knowledge_name}" th:text="${iter.index} + 1"></h6>
-                            <a class="dropdown-item" target="_blank" th:href="@{/knowledge/detail} + '?id=' + ${exercise.knowledge_id}">
-                                <span class="m-0 font-weight-bold text-primary" th:if="${exercise.knowledge_name}" th:text="${exercise.knowledge_name}"></span>
-                            </a>
-                        </div>
+<!--                        <div>-->
+<!--                            <h6 class="m-0 font-weight-bold text-primary" th:unless="${exercise.knowledge_name}" th:text="${iter.index} + 1"></h6>-->
+<!--                            <a class="dropdown-item" target="_blank" th:href="@{/knowledge/detail} + '?id=' + ${exercise.knowledge_id}">-->
+<!--                                <span class="m-0 font-weight-bold text-primary" th:if="${exercise.knowledge_name}" th:text="${exercise.knowledge_name}"></span>-->
+<!--                            </a>-->
+<!--                        </div>-->
                         <a aria-controls="collapsePages" aria-expanded="true" class="nav-link collapsed"
                            data-toggle="collapse"
                            href="#" th:data-target="${'#collapsePages' + exercise.id}">

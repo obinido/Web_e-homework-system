@@ -14,6 +14,8 @@ public interface ExerciseRepository {
 
     List<Exercise> selectExercise(Integer knowledge_id);
 
+    List<Exercise> selecthwExercise(Integer homework_id);
+
     int addExercise(Exercise exercise);
 
     int modifyExercise(Exercise exercise);

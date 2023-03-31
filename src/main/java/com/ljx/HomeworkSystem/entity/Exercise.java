@@ -5,10 +5,14 @@ import javax.validation.constraints.NotBlank;
 public class Exercise {
     private int id;
     private int knowledge_id;
+
+    private int homework_id;
     @NotBlank
     private String subject_name;
     @NotBlank
     private String knowledge_name;
+    @NotBlank
+    private String homework_name;
     private String content;
     private String answer;
     private Integer type;
@@ -42,8 +46,16 @@ public class Exercise {
         return knowledge_id;
     }
 
+    public int getHomework_id() {
+        return homework_id;
+    }
+
     public void setKnowledge_id(int knowledge_id) {
         this.knowledge_id = knowledge_id;
+    }
+
+    public void setHomework_id(int homework_id) {
+        this.homework_id = homework_id;
     }
 
     public String getContent() {
@@ -66,8 +78,16 @@ public class Exercise {
         return knowledge_name;
     }
 
+    public String getHomework_name() {
+        return homework_name;
+    }
+
     public void setKnowledge_name(String knowledge_name) {
         this.knowledge_name = knowledge_name;
+    }
+
+    public void setHomework_name(String homework_name) {
+        this.homework_name = homework_name;
     }
 
     public String getAnswer() {

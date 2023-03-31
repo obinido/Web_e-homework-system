@@ -52,6 +52,13 @@ public class ExerciseController extends AuthorityController {
         return exerciseService.showExerciseList(session, model, id);
     }
 
+    @RequestMapping("/hwlist")
+    public String exercisehwList(HttpSession session, Model model, Integer id) {
+        Answer answer = new Answer();
+        model.addAttribute("myAnswer", answer);
+        return exerciseService.showExercise(session, model, id);
+    }
+
     @RequestMapping("/toModify")
     public String toModifyExercise(Integer id, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");

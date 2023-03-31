@@ -1,11 +1,9 @@
 package com.ljx.HomeworkSystem.service;
 
 import com.ljx.HomeworkSystem.auxiliary.Auxiliary;
-import com.ljx.HomeworkSystem.entity.Exercise;
-import com.ljx.HomeworkSystem.entity.Knowledge;
-import com.ljx.HomeworkSystem.entity.Subject;
-import com.ljx.HomeworkSystem.entity.User;
+import com.ljx.HomeworkSystem.entity.*;
 import com.ljx.HomeworkSystem.repository.ExerciseRepository;
+import com.ljx.HomeworkSystem.repository.HomeworkRepository;
 import com.ljx.HomeworkSystem.repository.KnowledgeRepository;
 import com.ljx.HomeworkSystem.repository.RecommendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RecommendServiceImpl implements RecommendService {
     @Autowired
     private KnowledgeRepository knowledgeRepository;
+    @Autowired
+    private HomeworkRepository homeworkRepository;
     @Autowired
     private ExerciseRepository exerciseRepository;
     @Autowired
@@ -80,6 +80,35 @@ public class RecommendServiceImpl implements RecommendService {
         // model.addAttribute("currentKnowledgeID", -1);
         model.addAttribute("currentTitle", subject.getName());
         return "subjectProgress";
+    }
+
+    @Override
+    public String homeworkProgress(HttpSession session, Model model, Integer id) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", session.getAttribute("user"));
+        Subject subject = homeworkRepository.selectSubject(id);
+        List<Homework> homeworkList = homeworkRepository.listHomework(id);
+        for (Homework homework : homeworkList) {
+            Integer count = recommendRepository.getHomeworkNum(homework);
+            int progress;
+            if (count == 0) {
+                progress = 100;
+            } else {
+                Integer sum;
+                if (recommendRepository.getHomeworkProgress(user, homework) == null) {
+                    sum = 0;
+                } else {
+                    sum = recommendRepository.getHomeworkProgress(user, homework);
+                }
+                progress = (int) (sum * 1.0 / count);
+            }
+            homework.setProgress(progress);
+        }
+        model.addAttribute("subject", subject);
+        model.addAttribute("homeworkList", homeworkList);
+        // model.addAttribute("currentKnowledgeID", -1);
+        model.addAttribute("currentTitle", subject.getName());
+        return "homeworkProgress";
     }
 
     @Override

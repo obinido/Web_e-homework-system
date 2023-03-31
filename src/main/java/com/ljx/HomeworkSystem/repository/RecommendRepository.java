@@ -1,9 +1,6 @@
 package com.ljx.HomeworkSystem.repository;
 
-import com.ljx.HomeworkSystem.entity.Exercise;
-import com.ljx.HomeworkSystem.entity.Knowledge;
-import com.ljx.HomeworkSystem.entity.Subject;
-import com.ljx.HomeworkSystem.entity.User;
+import com.ljx.HomeworkSystem.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,9 +16,15 @@ public interface RecommendRepository {
 
     Integer getKnowledgeProgress(@Param("user") User user, @Param("knowledge") Knowledge knowledge);
 
+    Integer getHomeworkProgress(@Param("user") User user, @Param("homework") Homework homework);
+
     Integer getKnowledgeNum(@Param("knowledge") Knowledge knowledge);
 
+    Integer getHomeworkNum(@Param("homework") Homework homework);
+
     List<Integer> getDependencies(Knowledge knowledge);
+
+//    List<Integer> getDependencies(Homework homework);
 
     List<Exercise> getRecommendedExercise(@Param("user") User user, @Param("knowledge") Knowledge knowledge, @Param("limit") Integer limit);
 

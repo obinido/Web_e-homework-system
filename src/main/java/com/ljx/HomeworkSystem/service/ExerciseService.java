@@ -9,6 +9,9 @@ import javax.servlet.http.HttpSession;
 public interface ExerciseService {
     String showExerciseList(HttpSession session, Model model, Integer knowledge_id);
 
+    String showExercise(HttpSession session, Model model, Integer homework_id);
+
+
     String toAddExercise(Exercise exercise, HttpSession session, Model model, Integer id);
 
     String addExercise(Exercise exercise, HttpSession session, Model model);
