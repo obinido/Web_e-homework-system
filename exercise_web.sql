@@ -28,6 +28,9 @@ CREATE TABLE `answer` (
   `exercise_id` int NOT NULL,
   `answer` text,
   `is_right` int DEFAULT '-1',
+  `solution_id` int,
+  `language` int,
+  `result` int,
   PRIMARY KEY (`id`),
   KEY `user_email` (`user_email`),
   KEY `exercise_id` (`exercise_id`),
@@ -582,7 +585,24 @@ CREATE TRIGGER `judge` BEFORE INSERT ON `answer` FOR EACH ROW BEGIN
             END IF;
         END IF;
     END IF;
+    IF exercise_type = 5 THEN
+        INSERT INTO source_code(source) values(NEW.answer);
+        SET NEW.solution_id = LAST_INSERT_ID();
+        INSERT INTO solution(solution_id, problem_id, user_id, nick, in_date, language, ip, contest_id, valid, num)
+        VALUES(NEW.solution_id, NEW.exercise_id, 'admin', 'jiaxinliang', NEW.create_time, NEW.language, '127.0.0.1', '0', '1', '-1');
+    END IF;
 END
 ;;
-DELIMITER ;
+DROP TRIGGER IF EXISTS `oj`;
+DELIMITER ;;
+CREATE TRIGGER `oj` AFTER UPDATE ON `solution` FOR EACH ROW BEGIN
+    IF NEW.result >= 4 THEN
+        IF NEW.result = 4 THEN
+            UPDATE answer SET is_right = 100, result = NEW.result WHERE solution_id = NEW.solution_id;
+        ELSE
+            UPDATE answer SET is_right = 0, result = NEW.result WHERE solution_id = NEW.solution_id;
+        END IF ;
+    END IF ;
+END
+;;
 SET FOREIGN_KEY_CHECKS=1;
