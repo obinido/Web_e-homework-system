@@ -41,12 +41,12 @@ CREATE TABLE `answer` (
 -- ----------------------------
 -- Records of answer
 -- ----------------------------
-INSERT INTO `answer` VALUES ('78', '2023-03-15 15:17:11', 'jiaxinliang@cug.edu.cn', '80', 'B', '100');
-INSERT INTO `answer` VALUES ('79', '2023-03-15 16:42:08', 'jiaxinliang@cug.edu.cn', '81', 'D', '100');
-INSERT INTO `answer` VALUES ('80', '2023-03-15 16:42:22', 'jiaxinliang@cug.edu.cn', '88', '1', '100');
-INSERT INTO `answer` VALUES ('81', '2023-03-15 16:42:37', 'jiaxinliang@cug.edu.cn', '82', 'C', '100');
-INSERT INTO `answer` VALUES ('82', '2023-03-15 16:42:44', 'jiaxinliang@cug.edu.cn', '83', 'C', '100');
-INSERT INTO `answer` VALUES ('83', '2023-03-15 16:42:57', 'jiaxinliang@cug.edu.cn', '257', 'B', '100');
+INSERT INTO answer(id, create_time, user_email, exercise_id, answer, is_right) VALUES ('78', '2023-03-15 15:17:11', 'jiaxinliang@cug.edu.cn', '80', 'B', '100');
+INSERT INTO answer(id, create_time, user_email, exercise_id, answer, is_right) VALUES ('79', '2023-03-15 16:42:08', 'jiaxinliang@cug.edu.cn', '81', 'D', '100');
+INSERT INTO answer(id, create_time, user_email, exercise_id, answer, is_right) VALUES ('80', '2023-03-15 16:42:22', 'jiaxinliang@cug.edu.cn', '88', '1', '100');
+INSERT INTO answer(id, create_time, user_email, exercise_id, answer, is_right) VALUES ('81', '2023-03-15 16:42:37', 'jiaxinliang@cug.edu.cn', '82', 'C', '100');
+INSERT INTO answer(id, create_time, user_email, exercise_id, answer, is_right) VALUES ('82', '2023-03-15 16:42:44', 'jiaxinliang@cug.edu.cn', '83', 'C', '100');
+INSERT INTO answer(id, create_time, user_email, exercise_id, answer, is_right) VALUES ('83', '2023-03-15 16:42:57', 'jiaxinliang@cug.edu.cn', '257', 'B', '100');
 
 -- ----------------------------
 -- Table structure for `exercise`
