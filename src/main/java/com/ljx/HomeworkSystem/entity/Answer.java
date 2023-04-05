@@ -10,11 +10,8 @@ public class Answer {
     private int is_right;
     private String user_email;
     private Timestamp create_time;
-
-    private int language;
-
+    private int language = -1;
     private int solution_id;
-
     public int getId() {
         return id;
     }

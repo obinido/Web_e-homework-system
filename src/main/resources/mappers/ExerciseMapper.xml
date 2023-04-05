@@ -19,7 +19,7 @@
         update exercise set content=#{content}, answer=#{answer}, type=#{type} where id=#{id}
     </update>
     <insert id="recordSolutionHistory" parameterType="Answer">
-        insert into answer(user_email, exercise_id, answer) values(#{user_email}, #{exercise_id}, #{answer})
+        insert into answer(user_email, exercise_id, answer, language) values(#{user_email}, #{exercise_id}, #{answer}, #{language})
     </insert>
     <select id="selectAnswerByUser" resultType="Answer">
         select * from answer where exercise_id = #{id} and user_email = #{email}
@@ -34,7 +34,7 @@
         select * from answer where id = #{id} limit 1
     </select>
     <update id="modifyAnswer" parameterType="Answer">
-        update answer set is_right=#{is_right} where id=#{id}
+        update answer set is_right = #{is_right} where id=#{id}
     </update>
     <insert id="addSource" parameterType="Answer">
         insert into source_code(source) values(#{answer})

@@ -209,6 +209,15 @@
                                             <option value="0">否</option>
                                             <option value="1">是</option>
                                         </select>
+                                        <select class="form-control user-select" th:case="5" th:field="*{language}">
+                                            <option disabled value="-1">请选择编程语言</option>
+                                            <option value="0">C</option>
+                                            <option value="1">C++</option>
+                                            <option value="3">Java</option>
+                                            <option value="6">Python</option>
+                                        </select>
+                                        <textarea class="form-control" placeholder="请输入您的答案" rows="2"
+                                                  th:case="5" th:field="*{answer}"></textarea>
                                         <textarea class="form-control" placeholder="请输入您的答案" rows="2"
                                                   th:case="*" th:field="*{answer}"></textarea>
                                     </div>
