@@ -11,7 +11,6 @@ public interface ExerciseService {
 
     String showExercise(HttpSession session, Model model, Integer homework_id);
 
-
     String toAddExercise(Exercise exercise, HttpSession session, Model model, Integer id);
 
     String addExercise(Exercise exercise, HttpSession session, Model model);

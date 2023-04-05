@@ -11,6 +11,10 @@ public class Answer {
     private String user_email;
     private Timestamp create_time;
 
+    private int language;
+
+    private int solution_id;
+
     public int getId() {
         return id;
     }
@@ -26,7 +30,6 @@ public class Answer {
     public void setExercise_id(int exercise_id) {
         this.exercise_id = exercise_id;
     }
-
 
     public String getAnswer() {
         return answer;
@@ -58,5 +61,21 @@ public class Answer {
 
     public void setCreate_time(Timestamp create_time) {
         this.create_time = create_time;
+    }
+
+    public int getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(int language) {
+        this.language = language;
+    }
+
+    public int getSolution_id() {
+        return solution_id;
+    }
+
+    public void setSolution_id(int solution_id) {
+        this.solution_id = solution_id;
     }
 }

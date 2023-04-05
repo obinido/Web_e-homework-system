@@ -14,8 +14,8 @@ Date: 2023-03-31 10:02:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ exercise_web /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE exercise_web;
+# CREATE DATABASE /*!32312 IF NOT EXISTS*/ exercise_web /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE jol;
 
 -- ----------------------------
 -- Table structure for `answer`
