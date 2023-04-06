@@ -130,9 +130,9 @@ public class HomeworkServiceImpl implements HomeworkService {
         // model.addAttribute("currentKnowledgeID", id);
 //        List<Integer> dependency = recommendRepository.getDependencies(homework);
 //        homework.setDependency(dependency);
-        model.addAttribute("originKnowledge", homework);
+        model.addAttribute("originHomework", homework);
         model.addAttribute("originSubject", subject);
-        return "modifyKnowledge";
+        return "modifyHomework";
     }
 
     @Override

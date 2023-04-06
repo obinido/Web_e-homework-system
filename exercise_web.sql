@@ -374,6 +374,7 @@ INSERT INTO `exercise` VALUES ('317', '45', null, '实现接口中的抽象方�
 INSERT INTO `exercise` VALUES ('318', '45', null, '包名与子包名之间用______分隔。加载包的关键字是______。', '', '3');
 INSERT INTO `exercise` VALUES ('319', '45', null, '字符串类又包含两大类，它们是______和______。', '', '3');
 INSERT INTO `exercise` VALUES ('320', '44', null, '分析下列程序的输出结果：\r\n```\r\npublic class Man extends Human {\r\n  public void eat() {\r\n	System.out.println(\"I can eat more\");\r\n  }\r\n  public static void main(String[] a) {\r\n	Man obj1 = new Man();\r\n	obj1.eat(); // call Man.eat()\r\n	Human obj2 = (Human) obj1;\r\n	obj2.eat(); // call Man.eat()\r\n	Man obj3 = (Man) obj2;\r\n	obj3.eat(); // call Man.eat()\r\n  }\r\n}\r\n```', '', '4');
+INSERT INTO `exercise` VALUES ('1002', '34', '1', '计算 A+B\r\n输入：两个整数 a,b (0<=a,b<=10)\r\n输出：a+b\r\n样例输入：\r\n1 2\r\n样例输出：\r\n3','','5');
 
 -- ----------------------------
 -- Table structure for `homework`
@@ -557,6 +558,7 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
+  `class` varchar(20),
   `usertype` tinyint NOT NULL,
   `university` varchar(20) DEFAULT NULL,
   `institution_id` varchar(20) DEFAULT NULL,
@@ -566,10 +568,10 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('jiaxinliang@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '梁家欣', '0', '中国地质大学', '20191000308');
-INSERT INTO `user` VALUES ('student1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生1', '1', '中国地质大学', '20190000001');
-INSERT INTO `user` VALUES ('student2@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生2', '1', '中国地质大学', '20190000002');
-INSERT INTO `user` VALUES ('teacher1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '老师A', '2', '中国地质大学', '666666');
+INSERT INTO `user` VALUES ('jiaxinliang@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '梁家欣','', '0', '中国地质大学', '20191000308');
+INSERT INTO `user` VALUES ('student1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生1', '19001','1', '中国地质大学', '20190000001');
+INSERT INTO `user` VALUES ('student2@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生2', '19001','1', '中国地质大学', '20190000002');
+INSERT INTO `user` VALUES ('teacher1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '老师A', '','2', '中国地质大学', '666666');
 DROP TRIGGER IF EXISTS `judge`;
 DELIMITER ;;
 CREATE TRIGGER `judge` BEFORE INSERT ON `answer` FOR EACH ROW BEGIN
