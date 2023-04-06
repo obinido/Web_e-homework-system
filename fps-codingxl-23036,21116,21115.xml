@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[编程求1+3+5+...+n]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+
+<description><![CDATA[<div class="O">
+	<div>
+		<b>编程求</b><b>1+3+5+...+n </b> 
+	</div>
+	<div>
+	</div>
+</div>]]></description>
+<input><![CDATA[<div class="O">
+	<div>
+		<b>输入一行，只有一个整数</b><b>n (</b><b>1&lt;=n&lt;=9999</b><b>) </b><b>这里</b><b>n</b><b>为</b><b>奇数</b><b>。 </b> 
+	</div>
+	<div>
+		<br />
+	</div>
+	<div>
+	</div>
+</div>]]></input> 
+<output><![CDATA[<b>输出只有一行</b>]]></output>
+<sample_input><![CDATA[99]]></sample_input>
+<sample_output><![CDATA[2500]]></sample_output>
+  <hint><![CDATA[]]></hint>
+<source><![CDATA[语言入门-基础练习]]></source>
+		<solution language="C++"><![CDATA[#include<iostream>
+using namespace std;
+int main() {
+	int n,i=1,sum=0;
+	cin>>n;
+	while(i<=n){
+		sum+=i;
+		i=i+2; 
+	}
+	cout<<sum<<endl;
+	return 0;
+	 
+} ]]></solution>
+			<solution language="Pascal"><![CDATA[var n,t,s:longint;
+begin
+	readln(n);
+	t:=1;
+	repeat
+      s:=s+t;
+	  t:=t+2;
+	until t>n;
+	writeln(s);
+end.]]></solution>
+			<solution language="Python"><![CDATA[# coding=utf-8
+n = int(input())
+s = 0
+for i in range(1,n+1,2):
+    s += i
+print(s)]]></solution>
+	</item>
+<item>
+<title><![CDATA[编程求1+1/2+1/3+...+1/n]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+
+<description><![CDATA[<div class="O">
+	<div>
+		<b>编程求</b><b>1+1/2+1/3+...+1/n </b> 
+	</div>
+	<div>
+		<br />
+	</div>
+	<div>
+	</div>
+</div>]]></description>
+<input><![CDATA[<div>
+	<b>输入</b><b>:</b><b>输入一行，只有一个整数</b><b>n(1&lt;=n&lt;=200)</b><b></b> 
+</div>
+<div>
+	<br />
+</div>]]></input> 
+<output><![CDATA[<b>输出</b><b>:</b><b>输出只有一行（这意味着末尾有一个回车符号），包括</b><b>1</b><b>个实数。</b><b>(</b><b>保留</b><b>3</b><b>位小数</b><b>)</b>]]></output>
+<sample_input><![CDATA[5]]></sample_input>
+<sample_output><![CDATA[2.283]]></sample_output>
+  <hint><![CDATA[]]></hint>
+<source><![CDATA[语言入门-基础练习]]></source>
+		<solution language="Pascal"><![CDATA[var s:real;n,i:integer;
+begin
+	readln(n);
+	s:=0;i:=0;
+	repeat
+    	inc(i);
+		s:=s+(1/i);
+	until i=n;
+	writeln(s:0:3);
+end.]]></solution>
+	</item>
+<item>
+<title><![CDATA[计算 A+B]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+
+<description><![CDATA[<div class="content">
+	计算 A+B
+</div>]]></description>
+<input><![CDATA[<p>
+	两个整数 a,b (0&lt;=a,b&lt;=10)
+</p>]]></input> 
+<output><![CDATA[<p>
+	输出 a+b
+</p>]]></output>
+<sample_input><![CDATA[1 2
+]]></sample_input>
+<sample_output><![CDATA[3]]></sample_output>
+  <hint><![CDATA[]]></hint>
+<source><![CDATA[输入输出]]></source>
+		<solution language="C++"><![CDATA[#include <iostream>
+using namespace std;
+int main(){
+    int a,b;
+    while(cin >> a >> b)
+        cout << a+b << endl;
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var
+a,b:integer; 
+begin
+Read(a,b);
+write(a+b);
+end.
+]]></solution>
+	</item>
+</fps>
