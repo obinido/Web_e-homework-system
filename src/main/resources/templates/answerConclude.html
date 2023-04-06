@@ -169,9 +169,10 @@
                             <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>答题时间</th>
-                                    <th>答题内容</th>
+                                    <th width="20%">答题时间</th>
+                                    <th width="28%">答题内容</th>
                                     <th>答题成绩</th>
+                                    <th>Online Judge</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -180,6 +181,48 @@
                                     <td th:text="${answer.create_time}"></td>
                                     <td th:text="${#strings.abbreviate(answer.answer, 30)}"></td>
                                     <td th:text="${answer.is_right} == -1? '未批改':${answer.is_right} "></td>
+                                    <td>
+                                        <div th:switch="${answer.language}" style="display: inline-block;">
+                                            <div class="badge text-white text-nowrap bg-info p-3" th:case="0">
+                                                C
+                                            </div>
+                                            <div class="badge text-white text-nowrap bg-info p-3" th:case="1">
+                                                C++
+                                            </div>
+                                            <div class="badge text-white text-nowrap bg-info p-3" th:case="3">
+                                                Java
+                                            </div>
+                                            <div class="badge text-white text-nowrap bg-info p-3" th:case="6">
+                                                Python
+                                            </div>
+                                        </div>
+                                        <div th:switch="${answer.result}" style="display: inline-block;">
+                                            <div class="badge text-white text-nowrap bg-primary p-3" th:case="4">
+                                                结果正确
+                                            </div>
+                                            <div class="badge text-white bg-warning text-nowrap p-3" th:case="5">
+                                                格式错误
+                                            </div>
+                                            <div class="badge text-white bg-danger text-nowrap p-3" th:case="6">
+                                                答案错误
+                                            </div>
+                                            <div class="badge text-white bg-warning text-nowrap p-3" th:case="7">
+                                                时间超限
+                                            </div>
+                                            <div class="badge text-white bg-warning text-nowrap p-3" th:case="8">
+                                                内存超限
+                                            </div>
+                                            <div class="badge text-white bg-warning text-nowrap p-3" th:case="9">
+                                                输出超限
+                                            </div>
+                                            <div class="badge text-white bg-warning text-nowrap p-3" th:case="10">
+                                                运行时错误
+                                            </div>
+                                            <div class="badge text-white bg-warning text-nowrap p-3" th:case="11">
+                                                编译错误
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td><a th:href="@{/exercise/answerDetail} + '?id=' + ${answer.id}">查看详情</a></td>
                                 </tr>
                                 </tbody>

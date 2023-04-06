@@ -12,6 +12,7 @@ public class Answer {
     private Timestamp create_time;
     private int language = -1;
     private int solution_id;
+    private int result = -1;
     public int getId() {
         return id;
     }
@@ -74,5 +75,13 @@ public class Answer {
 
     public void setSolution_id(int solution_id) {
         this.solution_id = solution_id;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 }
