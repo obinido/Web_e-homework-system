@@ -7,8 +7,12 @@ public class Mapping {
     private int subject_id;
     @NotBlank
     private String teacher_email;
-    @NotBlank
+
     private String student_email;
+
+    private String class_id;
+
+    private int status;
 
     public int getId() {
         return id;
@@ -42,4 +46,19 @@ public class Mapping {
         this.student_email = student_email;
     }
 
+    public String getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(String class_id) {
+        this.class_id = class_id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }
