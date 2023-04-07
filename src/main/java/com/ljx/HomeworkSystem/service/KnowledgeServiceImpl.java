@@ -115,6 +115,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         model.addAttribute("teachers", knowledgeRepository.listTeacher());
         model.addAttribute("students", knowledgeRepository.listStudent());
         model.addAttribute("subjects", knowledgeRepository.listSubject(user));
+        model.addAttribute("classes", knowledgeRepository.listClass());
         return "addMap";
     }
 

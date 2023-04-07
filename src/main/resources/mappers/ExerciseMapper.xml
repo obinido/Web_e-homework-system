@@ -36,11 +36,4 @@
     <update id="modifyAnswer" parameterType="Answer">
         update answer set is_right = #{is_right} where id=#{id}
     </update>
-    <insert id="addSource" parameterType="Answer">
-        insert into source_code(source) values(#{answer})
-    </insert>
-    <insert id="addSolution" parameterType="Answer">
-        insert into solution(solution_id, problem_id, user_id, nick, in_date, language, ip, contest_id, valid, num)
-        values(#{solution_id}, #{exercise_id}, 'admin', 'jiaxinliang', #{creat_time}, #{language}, '127.0.0.1', '0', '1', '-1')
-    </insert>
 </mapper>

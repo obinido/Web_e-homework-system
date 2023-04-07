@@ -13,6 +13,9 @@
     <select id="listStudent" resultType="User">
         select * from user where usertype = 1
     </select>
+    <select id="listClass" resultType="String">
+        select distinct class from user where class is not null
+    </select>
     <select id="selectSubject" parameterType="Integer" resultType="Subject">
         select * from subject where id = #{id} limit 1
     </select>

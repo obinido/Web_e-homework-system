@@ -18,6 +18,8 @@ public interface KnowledgeRepository {
 
     List<User> listStudent();
 
+    List<String> listClass();
+
     Subject selectSubject(Integer id);
 
     Subject selectSubjectByName(String name);
