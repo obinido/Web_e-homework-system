@@ -190,12 +190,12 @@
                                     </label>
                                 </div>
                                 <div class="form-group" id="class">
-                                    <label>请选择教师：</label>
-                                    <select class="form-control user-select" th:field="*{teacher_email}">
-                                        <option disabled value="-1">请选择教师</option>
-                                        <th:block th:each="teacher: ${teachers}">
-                                            <option th:text="${teacher.username}"
-                                                    th:value="${teacher.email}"></option>
+                                    <label>请选择班级：</label>
+                                    <select class="form-control user-select" th:field="*{class}">
+                                        <option disabled value="-1">请选择班级</option>
+                                        <th:block th:each="class: ${classes}">
+                                            <option th:text="${class}"
+                                                    th:value="${class}"></option>
                                         </th:block>
                                     </select>
                                 </div>
@@ -294,7 +294,4 @@
         }
     })
 </script>
-
-<button id="xuanze" class="btn btn-primary" >选择</button>
-
 </body>

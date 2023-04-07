@@ -41,12 +41,12 @@ CREATE TABLE `answer` (
 -- ----------------------------
 -- Records of answer
 -- ----------------------------
-INSERT INTO answer VALUES ('78', '2023-03-15 15:17:11', 'jiaxinliang@cug.edu.cn', '80', 'B', '100', '', '-1', '-1');
-INSERT INTO answer VALUES ('79', '2023-03-15 16:42:08', 'jiaxinliang@cug.edu.cn', '81', 'D', '100', '', '-1', '-1');
-INSERT INTO answer VALUES ('80', '2023-03-15 16:42:22', 'jiaxinliang@cug.edu.cn', '88', '1', '100', '', '-1', '-1');
-INSERT INTO answer VALUES ('81', '2023-03-15 16:42:37', 'jiaxinliang@cug.edu.cn', '82', 'C', '100', '', '-1', '-1');
-INSERT INTO answer VALUES ('82', '2023-03-15 16:42:44', 'jiaxinliang@cug.edu.cn', '83', 'C', '100', '', '-1', '-1');
-INSERT INTO answer VALUES ('83', '2023-03-15 16:42:57', 'jiaxinliang@cug.edu.cn', '257', 'B', '100', '', '-1', '-1');
+INSERT INTO answer VALUES ('78', '2023-03-15 15:17:11', 'jiaxinliang@cug.edu.cn', '80', 'B', '100', null, '-1', '-1');
+INSERT INTO answer VALUES ('79', '2023-03-15 16:42:08', 'jiaxinliang@cug.edu.cn', '81', 'D', '100', null, '-1', '-1');
+INSERT INTO answer VALUES ('80', '2023-03-15 16:42:22', 'jiaxinliang@cug.edu.cn', '88', '1', '100', null, '-1', '-1');
+INSERT INTO answer VALUES ('81', '2023-03-15 16:42:37', 'jiaxinliang@cug.edu.cn', '82', 'C', '100', null, '-1', '-1');
+INSERT INTO answer VALUES ('82', '2023-03-15 16:42:44', 'jiaxinliang@cug.edu.cn', '83', 'C', '100', null, '-1', '-1');
+INSERT INTO answer VALUES ('83', '2023-03-15 16:42:57', 'jiaxinliang@cug.edu.cn', '257', 'B', '100', null, '-1', '-1');
 INSERT INTO answer VALUES ('85', '2023-04-06 21:02:57', 'jiaxinliang@cug.edu.cn', '1002', '#include <iostream>\r\nusing namespace std;\r\nint main(){\r\n    int a,b;\r\n    while(cin >> a >> b)\r\n        cout << a+b << endl;\r\n	return 0;}','100','1011','1','4');
 INSERT INTO answer VALUES ('86', '2023-04-06 21:14:49', 'jiaxinliang@cug.edu.cn', '1002', '# coding=utf-8\r\nn = int(input())\r\ns = 0\r\nfor i in range(1,n+1,2):\r\n    s += i\r\nprinttttttttttt(s)', '0', '1012', '6', '10');
 INSERT INTO answer VALUES ('87', '2023-04-06 21:17:58', 'jiaxinliang@cug.edu.cn', '1002', 'import java.util.*;\r\npublic class Main{\r\n	public static void main(String args[]){\r\n		Scanner cin = new Scanner(System.in);\r\n		int a, b;\r\n		while (cin.hasNext()){\r\n			a = cin.nextInt(); b = cin.nextInt();\r\n			System.out.println(1);\r\n		}\r\n	}\r\n}', '0', '1013', '3', '6');
@@ -396,7 +396,7 @@ CREATE TABLE `homework` (
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES ('1', 'Java第一次作业', 'Java第一次作业', '7');
+INSERT INTO `homework` VALUES ('1', 'Java第一次作业', 'Java第一次作业\r\n截至时间：2023.04.20\r\n一共5题', '7');
 
 -- ----------------------------
 -- Table structure for `image`
@@ -571,10 +571,10 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('jiaxinliang@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '梁家欣','', '0', '中国地质大学', '20191000308');
-INSERT INTO `user` VALUES ('student1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生1', '19001','1', '中国地质大学', '20190000001');
-INSERT INTO `user` VALUES ('student2@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生2', '19001','1', '中国地质大学', '20190000002');
-INSERT INTO `user` VALUES ('teacher1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '老师A', '','2', '中国地质大学', '666666');
+INSERT INTO `user` VALUES ('jiaxinliang@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '梁家欣', null, '0', '中国地质大学', '20191000308');
+INSERT INTO `user` VALUES ('student1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生1', '19001', '1', '中国地质大学', '20190000001');
+INSERT INTO `user` VALUES ('student2@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生2', '19001', '1', '中国地质大学', '20190000002');
+INSERT INTO `user` VALUES ('teacher1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '老师A', null, '2', '中国地质大学', '666666');
 DROP TRIGGER IF EXISTS `judge`;
 DELIMITER ;;
 CREATE TRIGGER `judge` BEFORE INSERT ON `answer` FOR EACH ROW BEGIN
