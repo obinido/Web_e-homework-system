@@ -19,8 +19,6 @@ import javax.servlet.http.HttpSession;
 public class ExerciseController extends AuthorityController {
     @Autowired
     private ExerciseService exerciseService;
-    @Autowired
-    private ExerciseService exerciseOjService;
 
     @RequestMapping("/toAdd")
     public String toAddExercise(@ModelAttribute("exercise") Exercise exercise, HttpSession session, Model model, Integer id) {

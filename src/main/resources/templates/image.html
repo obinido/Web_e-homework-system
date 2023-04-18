@@ -52,7 +52,7 @@
         </div>
 
         <!-- Heading -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" th:href="@{index}">
                 <i class="fas fa-fw fa-home"></i>
                 <span>我的主页</span></a>
@@ -63,6 +63,12 @@
             <a class="nav-link" th:href="@{/knowledge/list}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>课程列表</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/message/list}">
+                <i class="far fa-fw fa-paper-plane"></i>
+                <span>消息提醒</span></a>
         </li>
 
         <div th:if="${user.usertype} ne '1'">

@@ -61,6 +61,12 @@
                 <span>课程列表</span></a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/message/list}">
+                <i class="far fa-fw fa-paper-plane"></i>
+                <span>消息提醒</span></a>
+        </li>
+
         <div th:if="${user.usertype} ne '1'">
             <!-- Divider -->
             <hr class="sidebar-divider">

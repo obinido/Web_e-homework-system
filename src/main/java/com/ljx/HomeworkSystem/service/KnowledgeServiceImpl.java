@@ -186,7 +186,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             // String path = request.getServletContext().getRealPath("/images/");
             // 获得上传文件原名
             // 上传文件路径（开发环境）
-            String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\";
+            String path = System.getProperty("user.dir") + "/src/main/resources/static/images/";
             // 获得上传文件原名
             String fileName = myfile.getOriginalFilename();
             // 对文件重命名

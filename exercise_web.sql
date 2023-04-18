@@ -377,7 +377,7 @@ INSERT INTO `exercise` VALUES ('317', '45', null, '实现接口中的抽象方�
 INSERT INTO `exercise` VALUES ('318', '45', null, '包名与子包名之间用______分隔。加载包的关键字是______。', '', '3');
 INSERT INTO `exercise` VALUES ('319', '45', null, '字符串类又包含两大类，它们是______和______。', '', '3');
 INSERT INTO `exercise` VALUES ('320', '44', null, '分析下列程序的输出结果：\r\n```\r\npublic class Man extends Human {\r\n  public void eat() {\r\n	System.out.println(\"I can eat more\");\r\n  }\r\n  public static void main(String[] a) {\r\n	Man obj1 = new Man();\r\n	obj1.eat(); // call Man.eat()\r\n	Human obj2 = (Human) obj1;\r\n	obj2.eat(); // call Man.eat()\r\n	Man obj3 = (Man) obj2;\r\n	obj3.eat(); // call Man.eat()\r\n  }\r\n}\r\n```', '', '4');
-INSERT INTO `exercise` VALUES ('1002', '34', '1', '计算 A+B\r\n输入：两个整数 a,b (0<=a,b<=10)\r\n输出：a+b\r\n样例输入：\r\n1 2\r\n样例输出：\r\n3','','5');
+INSERT INTO `exercise` VALUES ('1002', '34', '1', '**计算 A+B**\r\n\r\n输入：两个整数$a,b (0<=a,b<=10)$\r\n\r\n输出：$a+b$\r\n\r\n样例输入：\r\n\r\n1 2\r\n\r\n样例输出：\r\n\r\n3','','5');
 
 -- ----------------------------
 -- Table structure for `homework`
@@ -410,13 +410,14 @@ CREATE TABLE `image` (
   PRIMARY KEY (`id`),
   KEY `user_email` (`user_email`),
   CONSTRAINT `image_ibfk_1` FOREIGN KEY (`user_email`) REFERENCES `user` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of image
 -- ----------------------------
 INSERT INTO `image` VALUES ('19', 'jiaxinliang@cug.edu.cn', 'Java-对象和类', '20230374201340278.png');
 INSERT INTO `image` VALUES ('20', 'jiaxinliang@cug.edu.cn', 'Java', '20230374203526524.jpg');
+INSERT INTO `image` VALUES ('21', 'jiaxinliang@cug.edu.cn', 'welcome', '202304109073854764.gif');
 
 -- ----------------------------
 -- Table structure for `knowledge`
@@ -566,7 +567,7 @@ CREATE TABLE `user` (
   `usertype` tinyint NOT NULL,
   `university` varchar(20) DEFAULT NULL,
   `institution_id` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`email`,`usertype`)
+  PRIMARY KEY (`email`, `usertype`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
@@ -576,6 +577,29 @@ INSERT INTO `user` VALUES ('jiaxinliang@cug.edu.cn', 'e10adc3949ba59abbe56e057f2
 INSERT INTO `user` VALUES ('student1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生1', '19001', '1', '中国地质大学', '20190000001');
 INSERT INTO `user` VALUES ('student2@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '学生2', '19001', '1', '中国地质大学', '20190000002');
 INSERT INTO `user` VALUES ('teacher1@cug.edu.cn', 'e10adc3949ba59abbe56e057f20f883e', '老师A', null, '2', '中国地质大学', '666666');
+
+-- ----------------------------
+-- Table structure for `message`
+-- ----------------------------
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        `send_out_name` varchar(20) NOT NULL,
+                        `receive_email` varchar(50) NOT NULL,
+                        `content` text,
+                        `send_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        `isRead` int default 0,
+                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- ----------------------------
+-- Records of message
+-- ----------------------------
+INSERT INTO `message` VALUES ('1', 'System', 'jiaxinliang@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('2', 'System', 'student1@cug.edu.cn', 'Welcome!', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('3', 'System', 'student2@cug.edu.cn', 'Welcome!', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('4', 'System', 'teacher1@cug.edu.cn', 'Welcome!', '2023-04-12 20:34:05', '0');
+
 DROP TRIGGER IF EXISTS `judge`;
 DELIMITER ;;
 CREATE TRIGGER `judge` BEFORE INSERT ON `answer` FOR EACH ROW BEGIN

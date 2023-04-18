@@ -15,7 +15,6 @@ public class User {
     private String password2;
     private String username;
     private String university;
-    private String ID;
     private String validateCode;
     private byte usertype = 1;
 
@@ -65,14 +64,6 @@ public class User {
 
     public void setUniversity(String university) {
         this.university = university;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String getValidateCode() {
