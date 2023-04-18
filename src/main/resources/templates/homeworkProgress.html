@@ -183,7 +183,11 @@
                                     <td>
                                         <div class="progress">
                                             <div class="progress-bar" role="progressbar" th:style="${'width: ' + homework.progress + '%;'}"
-                                                 th:aria-valuenow="${homework.progress}" aria-valuemin="0" aria-valuemax="100" th:text="${homework.progress + '%'}"></div>
+                                                 th:aria-valuenow="${homework.progress}" aria-valuemin="0" aria-valuemax="100" th:fragment="my-fragment">
+                                                <span th:id="${'countdown-'+homework.id}"></span>
+
+                                            </div>
+
                                         </div>
                                     </td>
                                     <td>
@@ -274,20 +278,55 @@
 <script src="js/sb-admin-2.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script th:inline="javascript">
-    var id = 'main-body-content';
-    var content = /*[[${content}]]*/ '暂无内容。';
-    document.getElementById(id).innerHTML = marked.parse(content);
-
-</script>
 
 <!-- Page level plugins -->
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+<script th:inline="javascript">
 
+
+    // 定义一个更新倒计时的函数
+    function updateCountdown() {
+
+
+        /*[# th:each="homework : ${homeworkList}"]*/
+
+        // var rmt = /*[[${homework.rmt}]]*/;
+        var ddl = /*[[${homework.deadline}]]*/;
+        var now = Date.now();
+        var d=new Date(ddl);
+        var n=new Date(now);
+        var rmt = d.getTime() - n.getTime();
+        var id = /*[[${'countdown-' + homework.id}]]*/;
+
+        // 获取倒计时元素
+        //var countdownElement = ;
+
+        // 将剩余时间格式化为字符串
+        var seconds = Math.floor(rmt / 1000) % 60;
+        var minutes = Math.floor(rmt / 1000 / 60) % 60;
+        var hours = Math.floor(rmt / 1000 / 60 / 60) % 24;
+        var days = Math.floor(rmt / 1000 / 60 / 60 / 24);
+        var countdownText = days + ' 天 ' + hours + ' 时 ' + minutes + ' 分 ' + seconds + ' 秒';
+
+        // 更新倒计时元素的文本内容
+        document.getElementById(id).innerHTML = countdownText;
+        // location.reload("#id");
+        /*[/]*/
+
+
+    }
+
+    // 调用更新倒计时函数，并每秒更新一次
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+</script>
 </body>
 
 </html>

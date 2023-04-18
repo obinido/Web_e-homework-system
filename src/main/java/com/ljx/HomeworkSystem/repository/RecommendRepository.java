@@ -18,6 +18,8 @@ public interface RecommendRepository {
 
     Integer getHomeworkProgress(@Param("user") User user, @Param("homework") Homework homework);
 
+    Integer getHomeworkDeadline(@Param("user") User user, @Param("homework") Homework homework);
+
     Integer getKnowledgeNum(@Param("knowledge") Knowledge knowledge);
 
     Integer getHomeworkNum(@Param("homework") Homework homework);

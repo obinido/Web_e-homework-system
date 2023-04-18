@@ -9,8 +9,8 @@ public interface RecommendService {
 
     String knowledgeProgress(HttpSession session, Model model, Integer id);
 
+//    String homeworkProgress(HttpSession session, Model model, Integer id);
     String homeworkProgress(HttpSession session, Model model, Integer id);
-
     String exerciseRecommend(HttpSession session, Model model, Integer id);
 
 }

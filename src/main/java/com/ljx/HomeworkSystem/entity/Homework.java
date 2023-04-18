@@ -1,6 +1,9 @@
 package com.ljx.HomeworkSystem.entity;
 
 import javax.validation.constraints.NotBlank;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.Duration;
 import java.util.List;
 
 public class Homework {
@@ -12,6 +15,11 @@ public class Homework {
     private String title;
     private String content;
 //    private List<Integer> dependency;
+    private Timestamp create_time;
+    private Timestamp deadline;
+    private long rmt;
+
+
     private double progress;
     private boolean isDependent;
 
@@ -19,8 +27,23 @@ public class Homework {
         return isDependent;
     }
 
+    public long getRmt() {
+        return rmt;
+    }
+
+    public void setRmt(long rmt) {
+        this.rmt = rmt;
+    }
     public void setDependent(boolean dependent) {
         isDependent = dependent;
+    }
+
+    public Timestamp getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Timestamp deadline) {
+        this.deadline = deadline;
     }
 
     public double getProgress() {
@@ -77,5 +100,13 @@ public class Homework {
 
     public void setSubject_name(String subject_name) {
         this.subject_name = subject_name;
+    }
+
+    public Timestamp getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(Timestamp create_time) {
+        this.create_time = create_time;
     }
 }
