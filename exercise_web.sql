@@ -539,19 +539,20 @@ CREATE TABLE `subject_map` (
   KEY `student_email` (`student_email`),
   KEY `subject_id` (`subject_id`),
   KEY `teacher_email` (`teacher_email`),
+  UNIQUE KEY `subject_map_teacher_email_student_email_subject_id_index` (`teacher_email`,`student_email`,`subject_id`),
   CONSTRAINT `subject_map_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`),
   CONSTRAINT `subject_map_ibfk_2` FOREIGN KEY (`teacher_email`) REFERENCES `user` (`email`),
   CONSTRAINT `subject_map_ibfk_3` FOREIGN KEY (`student_email`) REFERENCES `user` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
 -- Records of subject_map
 -- ----------------------------
 INSERT INTO `subject_map` VALUES ('1', 'teacher1@cug.edu.cn', 'student1@cug.edu.cn', '7');
 INSERT INTO `subject_map` VALUES ('2', 'teacher1@cug.edu.cn', 'student1@cug.edu.cn', '9');
-INSERT INTO `subject_map` VALUES ('4', 'teacher1@cug.edu.cn', 'student2@cug.edu.cn', '7');
-INSERT INTO `subject_map` VALUES ('5', 'teacher1@cug.edu.cn', 'student2@cug.edu.cn', '12');
-INSERT INTO `subject_map` VALUES ('7', 'teacher1@cug.edu.cn', 'student2@cug.edu.cn', '9');
+INSERT INTO `subject_map` VALUES ('3', 'teacher1@cug.edu.cn', 'student2@cug.edu.cn', '7');
+INSERT INTO `subject_map` VALUES ('4', 'teacher1@cug.edu.cn', 'student2@cug.edu.cn', '12');
+INSERT INTO `subject_map` VALUES ('5', 'teacher1@cug.edu.cn', 'student2@cug.edu.cn', '9');
 
 -- ----------------------------
 -- Table structure for `user`

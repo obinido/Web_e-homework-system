@@ -44,7 +44,18 @@
         insert into knowledge (subject_id, title, content) values(#{subject_id}, #{title}, #{content})
     </insert>
     <insert id="addMap" parameterType="Mapping">
-        insert into subject_map (subject_id, teacher_email, student_email) values(#{subject_id}, #{teacher_email}, #{student_email})
+        <if test="status == 1">
+            insert ignore into  subject_map (subject_id, teacher_email, student_email)
+            values(#{subject_id}, #{teacher_email}, #{student_email})
+        </if>
+        <if test="status == 0">
+            create temporary table temp (teacher_email varchar(50), subject_id int) as
+                select email from user where class = #{class_id};
+            update temp set teacher_email = #{teacher_email}, subject_id = #{subject_id};
+            insert ignore into subject_map (teacher_email, student_email, subject_id)
+            select teacher_email, email, subject_id from temp;
+            drop table temp;
+        </if>
     </insert>
     <update id="modifySubject" parameterType="Subject">
         update subject set name=#{name}, introduction=#{introduction} where id=#{id}
