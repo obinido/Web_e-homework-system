@@ -388,6 +388,8 @@ CREATE TABLE `homework` (
   `title` varchar(20) NOT NULL,
   `content` longtext NOT NULL,
   `subject_id` int NOT NULL,
+  `create_time` datetime NOT NULL,
+  `deadline` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `subject_id` (`subject_id`),
   CONSTRAINT `homework_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`)
@@ -396,7 +398,9 @@ CREATE TABLE `homework` (
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES ('1', 'Java第一次作业', 'Java第一次作业\r\n截至时间：2023.04.20\r\n一共5题', '7');
+INSERT INTO `homework` VALUES (1, 'Java第一次作业', '共5题', 7, '2023-04-01 20:06:43', '2023-04-30 17:06:56');
+INSERT INTO `homework` VALUES (2, 'Java第二次作业', 'Java第二次作业', 7, '2023-04-07 06:17:07', '2023-05-07 06:17:18');
+
 
 -- ----------------------------
 -- Table structure for `image`
@@ -596,9 +600,9 @@ CREATE TABLE `message` (
 -- Records of message
 -- ----------------------------
 INSERT INTO `message` VALUES ('1', 'System', 'jiaxinliang@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
-INSERT INTO `message` VALUES ('2', 'System', 'student1@cug.edu.cn', 'Welcome!', '2023-04-12 20:34:05', '0');
-INSERT INTO `message` VALUES ('3', 'System', 'student2@cug.edu.cn', 'Welcome!', '2023-04-12 20:34:05', '0');
-INSERT INTO `message` VALUES ('4', 'System', 'teacher1@cug.edu.cn', 'Welcome!', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('2', 'System', 'student1@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('3', 'System', 'student2@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('4', 'System', 'teacher1@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
 
 DROP TRIGGER IF EXISTS `judge`;
 DELIMITER ;;
