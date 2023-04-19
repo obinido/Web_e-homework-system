@@ -11,4 +11,8 @@ import java.util.List;
 public interface MessageRepository {
 
     List<Message> listMessage(User user);
+
+    Message findById(int id);
+
+    void modifyMessage(Message message);
 }

@@ -24,9 +24,18 @@ public interface RecommendRepository {
 
     Integer getHomeworkNum(@Param("homework") Homework homework);
 
-    List<Integer> getDependencies(Knowledge knowledge);
+    Integer getHomeworkNum0(@Param("homework") Homework homework);
+    Integer getHomeworkNum1(@Param("homework") Homework homework);
 
-//    List<Integer> getDependencies(Homework homework);
+    Integer getHomeworkNum2(@Param("homework") Homework homework);
+
+    Integer getHomeworkNum3(@Param("homework") Homework homework);
+
+    Integer getHomeworkNum4(@Param("homework") Homework homework);
+
+    Integer getHomeworkNum5(@Param("homework") Homework homework);
+
+    List<Integer> getDependencies(Knowledge knowledge);
 
     List<Exercise> getRecommendedExercise(@Param("user") User user, @Param("knowledge") Knowledge knowledge, @Param("limit") Integer limit);
 

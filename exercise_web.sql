@@ -398,9 +398,8 @@ CREATE TABLE `homework` (
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES (1, 'Java第一次作业', '共5题', 7, '2023-04-01 20:06:43', '2023-04-30 17:06:56');
+INSERT INTO `homework` VALUES (1, 'Java第一次作业', '这是Java第一次作业！', 7, '2023-04-01 20:06:43', '2023-04-30 17:06:56');
 INSERT INTO `homework` VALUES (2, 'Java第二次作业', 'Java第二次作业', 7, '2023-04-07 06:17:07', '2023-05-07 06:17:18');
-
 
 -- ----------------------------
 -- Table structure for `image`
@@ -544,7 +543,7 @@ CREATE TABLE `subject_map` (
   KEY `student_email` (`student_email`),
   KEY `subject_id` (`subject_id`),
   KEY `teacher_email` (`teacher_email`),
-  UNIQUE KEY `subject_map_teacher_email_student_email_subject_id_index` (`teacher_email`,`student_email`,`subject_id`),
+  UNIQUE KEY `subject_map_teacher_email_student_email_subject_id_index` (`teacher_email`, `student_email`, `subject_id`),
   CONSTRAINT `subject_map_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`),
   CONSTRAINT `subject_map_ibfk_2` FOREIGN KEY (`teacher_email`) REFERENCES `user` (`email`),
   CONSTRAINT `subject_map_ibfk_3` FOREIGN KEY (`student_email`) REFERENCES `user` (`email`)
@@ -593,7 +592,8 @@ CREATE TABLE `message` (
                         `content` text,
                         `send_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
                         `isRead` int default 0,
-                        PRIMARY KEY (`id`)
+                        PRIMARY KEY (`id`),
+                        UNIQUE KEY `message_receive_email_send_time_uindex` (`receive_email`, `send_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- ----------------------------
@@ -637,6 +637,26 @@ CREATE TRIGGER `oj` AFTER UPDATE ON `solution` FOR EACH ROW BEGIN
             UPDATE answer SET is_right = 0, result = NEW.result WHERE solution_id = NEW.solution_id;
         END IF ;
     END IF ;
+END
+;;
+DROP TRIGGER IF EXISTS `notice`;
+DELIMITER ;;
+CREATE TRIGGER `notice` AFTER INSERT ON `homework` FOR EACH ROW BEGIN
+    DECLARE column_value VARCHAR(50);
+    DECLARE cur CURSOR FOR
+    SELECT student_email FROM subject_map where subject_id = NEW.subject_id;
+    OPEN cur;
+    read_loop: LOOP
+    FETCH cur INTO column_value;
+            insert ignore into message (send_out_name, receive_email, content, send_time, isRead)
+            values ('System', column_value, CONCAT('您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：', NEW.title,
+                                                                                ' \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=', NEW.id,
+                                                                                ') \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=', NEW.id, ')') ,
+                                               DATE_SUB(NEW.deadline, INTERVAL 1 DAY), 0);
+    END LOOP;
+
+    CLOSE cur;
+
 END
 ;;
 SET FOREIGN_KEY_CHECKS=1;

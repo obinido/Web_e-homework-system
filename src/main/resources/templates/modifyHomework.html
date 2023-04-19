@@ -52,7 +52,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{homework/subject} + '?id=' + ${originSubject.id}">
+            <a class="nav-link" th:href="@{knowledge/subject} + '?id=' + ${originSubject.id}">
                 <i class="fas fa-fw fa-info-circle"></i>
                 <span>课程内容</span></a>
         </li>
@@ -86,6 +86,12 @@
                 <a class="nav-link" th:href="@{homework/subject/toModify} + '?id=' + ${originSubject.id}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>修改课程</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${subject.id}">
+                    <i class="fas fa-fw fa-plus-square"></i>
+                    <span>添加作业</span></a>
             </li>
 
             <li class="nav-item">

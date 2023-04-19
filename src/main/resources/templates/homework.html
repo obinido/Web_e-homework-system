@@ -52,7 +52,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{homework/subject} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{knowledge/subject} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-info-circle"></i>
                 <span>课程内容</span></a>
         </li>
@@ -221,8 +221,26 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script th:inline="javascript">
     var id = 'main-body-content';
-    var content = /*[[${content}]]*/ '暂无内容。';
-    document.getElementById(id).innerHTML = marked.parse(content);
+    var content = /*[[${content}]]*/;
+    var sum =  /*[[${sum}]]*/;
+    var type0 = /*[[${type0}]]*/;
+    var type1 = /*[[${type1}]]*/;
+    var type2 = /*[[${type2}]]*/;
+    var type3 = /*[[${type3}]]*/;
+    var type4 = /*[[${type4}]]*/;
+    var type5 = /*[[${type5}]]*/;
+    var create_time = /*[[${create_time}]]*/;
+    var deadline = /*[[${deadline}]]*/;
+    var date = new Date(create_time);
+    create_time = date.toLocaleString();
+    date = new Date(deadline);
+    deadline = date.toLocaleString();
+    var footer = '\r\n\r\n 备注：以下信息由系统自动生成 \r\n\r\n ## 题量说明 \r\n\r\n ### 本次作业共' + sum + '题：\r\n\r\n - 判断题：'
+        + type2 + '题，支持自动判题，即时出分\r\n\r\n - 选择题：' + type1 + '题，支持自动判题，即时出分\r\n\r\n - 简答题：' + type0 +
+        '题\r\n\r\n - 填空题：' + type3 + '题\r\n\r\n - 编程题：' + type5 + '题，使用Online Judge评测，即时出分 \r\n\r\n ## 时间说明 \r\n\r\n - 起始时间：' +
+        create_time + '\r\n\r\n - **截至时间**：' + deadline;
+    var total = content + footer;
+    document.getElementById(id).innerHTML = marked.parse(total);
 
 </script>
 

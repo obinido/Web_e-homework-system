@@ -89,6 +89,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${subject.id}">
+                    <i class="fas fa-fw fa-plus-square"></i>
+                    <span>添加作业</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/knowledge/detail/toAdd} + '?id=' + ${originSubject.id}">
                     <i class="fas fa-fw fa-plus-square"></i>
                     <span>添加知识</span></a>

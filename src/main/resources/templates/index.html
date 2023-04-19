@@ -169,8 +169,8 @@
                 <!-- Dropdown Card -->
                 <div class="card shadow mb-4" th:each="subject: ${subjects}">
                     <!-- Card Header - Dropdown -->
-                    <a class="card-header py-3 d-flex flex-row align-items-center justify-content-between" th:href="@{knowledge/subject} + '?id=' + ${subject.id}">
-                        <h6 class="m-0 font-weight-bold text-primary" th:text="${subject.name}"></h6>
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <a class="m-0 font-weight-bold text-primary" th:text="${subject.name}" th:href="@{knowledge/subject} + '?id=' + ${subject.id}"></a>
 <!--                        <div class="dropdown no-arrow">-->
 <!--                            <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"-->
 <!--                               data-toggle="dropdown"-->
@@ -186,7 +186,7 @@
 <!--                                &lt;!&ndash;th:href="@{exercise/subject} + '?id=' + ${subject.id}">查看习题</a>&ndash;&gt;-->
 <!--                            </div>-->
 <!--                        </div>-->
-                    </a>
+                    </div>
                     <!-- Card Body -->
 <!--                    <div class="card-body" th:id="${'card-body-' + subject.id}"></div>-->
                 </div>

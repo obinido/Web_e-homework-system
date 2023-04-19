@@ -28,6 +28,24 @@
     <select id="getHomeworkNum" resultType="Integer">
         SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id};
     </select>
+    <select id="getHomeworkNum0" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id} and exercise.type=0;
+    </select>
+    <select id="getHomeworkNum1" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id} and exercise.type=1;
+    </select>
+    <select id="getHomeworkNum2" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id} and exercise.type=2;
+    </select>
+    <select id="getHomeworkNum3" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id} and exercise.type=3;
+    </select>
+    <select id="getHomeworkNum4" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id} and exercise.type=4;
+    </select>
+    <select id="getHomeworkNum5" resultType="Integer">
+        SELECT COUNT(*) FROM exercise WHERE exercise.homework_id=#{homework.id} and exercise.type=5;
+    </select>
     <select id="getDependencies" parameterType="Knowledge" resultType="Integer">
         SELECT dependent_knowledge_id FROM knowledge_dependency where knowledge_id=#{id};
     </select>

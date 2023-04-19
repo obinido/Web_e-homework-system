@@ -59,6 +59,15 @@ public class HomeworkServiceImpl implements HomeworkService {
         // model.addAttribute("currentKnowledgeID", id);
         model.addAttribute("currentTitle", homework.getTitle());
         model.addAttribute("content", Auxiliary.modifyContent(homework.getContent()));
+        model.addAttribute("create_time", homework.getCreate_time());
+        model.addAttribute("deadline", homework.getDeadline());
+        model.addAttribute("sum", recommendRepository.getHomeworkNum(homework));
+        model.addAttribute("type0", recommendRepository.getHomeworkNum0(homework));
+        model.addAttribute("type1", recommendRepository.getHomeworkNum1(homework));
+        model.addAttribute("type2", recommendRepository.getHomeworkNum2(homework));
+        model.addAttribute("type3", recommendRepository.getHomeworkNum3(homework));
+        model.addAttribute("type4", recommendRepository.getHomeworkNum4(homework));
+        model.addAttribute("type5", recommendRepository.getHomeworkNum5(homework));
         return "homework";
     }
 
@@ -66,11 +75,14 @@ public class HomeworkServiceImpl implements HomeworkService {
     public String toAddHomework(Integer id, HttpSession session, Model model, Homework homework) {
         Subject subject = homeworkRepository.selectSubject(id);
         List<Homework> homeworkList = homeworkRepository.listHomework(id);
+        User user = (User) session.getAttribute("user");
+        List<Subject> subjects = homeworkRepository.listSubject(user);
         homework.setSubject_name(subject.getName());
         homework.setSubject_id(subject.getId());
         model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("homeworkList", homeworkList);
         model.addAttribute("subject", subject);
+        model.addAttribute("subjects", subjects);
         return "addHomework";
     }
 

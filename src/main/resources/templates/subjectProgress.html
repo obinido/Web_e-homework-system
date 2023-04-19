@@ -59,7 +59,7 @@
                 <span>课程内容</span></a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>作业清单</span></a>
@@ -88,6 +88,12 @@
                 <a class="nav-link" th:href="@{knowledge/subject/toModify} + '?id=' + ${subject.id}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>修改课程</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${subject.id}">
+                    <i class="fas fa-fw fa-plus-square"></i>
+                    <span>添加作业</span></a>
             </li>
 
             <li class="nav-item">

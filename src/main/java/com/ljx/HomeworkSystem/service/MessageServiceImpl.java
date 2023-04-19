@@ -27,4 +27,13 @@ public class MessageServiceImpl implements MessageService {
         model.addAttribute("messages", messages);
         return "message";
     }
+
+    @Override
+    public String markAsRead(HttpSession session, Model model, int id) {
+        Message message = messageRepository.findById(id);
+        message.setIsRead(1 - message.getIsRead());
+        messageRepository.modifyMessage(message);
+        return "redirect:/message/list";
+    }
+
 }

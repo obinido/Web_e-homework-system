@@ -50,7 +50,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{homework/subject} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{knowledge/subject} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-info-circle"></i>
                 <span>课程内容</span></a>
         </li>
@@ -89,8 +89,15 @@
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${subject.id}">
                     <i class="fas fa-fw fa-plus-square"></i>
+                    <span>添加作业</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/knowledge/detail/toAdd} + '?id=' + ${subject.id}">
+                    <i class="fas fa-fw fa-plus-square"></i>
                     <span>添加知识</span></a>
             </li>
+
         </div>
 
         <!-- Divider -->
@@ -158,7 +165,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">添加知识</h1>
+                    <h1 class="h3 mb-0 text-gray-800">添加作业</h1>
                 </div>
 
                 <!-- Content Column -->
@@ -167,26 +174,21 @@
                     <!-- Blog -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 ">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">知识内容</h6>
+                            <h6 class="m-0 font-weight-bold text-primary text-center">作业内容</h6>
                         </div>
                         <div class="card-body">
                             <form class="user" method="post" th:action="@{/homework/detail/add}"
                                   th:object="${homework}">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="请输入课程名称" th:field="*{subject_name}"
-                                           type="text">
-                                    <span th:errors="*{subject_name}"></span>
+                                    <label>请选择课程：</label>
+                                    <select class="form-control user-select" th:field="*{subject_id}">
+                                        <option disabled value="-1">请选择课程</option>
+                                        <th:block th:each="subject: ${subjects}">
+                                            <option th:text="${subject.name}"
+                                                    th:value="${subject.id}"></option>
+                                        </th:block>
+                                    </select>
                                 </div>
-
-<!--                                <div class="form-group">-->
-<!--                                    <select class="form-control" th:field="*{dependency}" multiple data-mdb-placeholder="请输入前置知识" data-mdb-clear-button="true">-->
-<!--                                        <option value="-1">请输入前置知识</option>-->
-<!--                                        <th:block th:each="homework: ${homeworkList}">-->
-<!--                                            <option th:value="${homework.id}" th:text="${homework.title}"></option>-->
-<!--                                        </th:block>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-
                                 <div class="form-group">
                                     <input class="form-control" placeholder="请输入作业标题" th:field="*{title}" type="text">
                                     <span th:errors="*{title}"></span>
@@ -195,6 +197,15 @@
                                 <div class="form-group">
                                     <textarea class="form-control" placeholder="请输入作业内容" rows="10"
                                               th:field="*{content}"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time-input1">请选择起始时间：</label>
+                                    <input type="datetime-local" class="form-control" id="time-input1" th:field="*{create_time}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="time-input2">请选择截止时间：</label>
+                                    <input type="datetime-local" class="form-control" id="time-input2" th:field="*{deadline}">
                                 </div>
 
                                 <div class="form-group">

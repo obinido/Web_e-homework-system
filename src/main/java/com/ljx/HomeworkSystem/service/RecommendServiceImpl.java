@@ -86,41 +86,12 @@ public class RecommendServiceImpl implements RecommendService {
     }
 
     @Override
-//    public String homeworkProgress(HttpSession session, Model model, Integer id) {
-//        User user = (User) session.getAttribute("user");
-//        model.addAttribute("user", session.getAttribute("user"));
-//        Subject subject = homeworkRepository.selectSubject(id);
-//        List<Homework> homeworkList = homeworkRepository.listHomework(id);
-//        for (Homework homework : homeworkList) {
-//            Integer count = recommendRepository.getHomeworkNum(homework);
-//            int progress;
-//            if (count == 0) {
-//                progress = 100;
-//            } else {
-//                Integer sum;
-//                if (recommendRepository.getHomeworkProgress(user, homework) == null) {
-//                    sum = 0;
-//                } else {
-//                    sum = recommendRepository.getHomeworkProgress(user, homework);
-//                }
-//                progress = (int) (sum * 1.0 / count);
-//            }
-//            homework.setProgress(progress);
-//        }
-//        model.addAttribute("subject", subject);
-//        model.addAttribute("homeworkList", homeworkList);
-//        // model.addAttribute("currentKnowledgeID", -1);
-//        model.addAttribute("currentTitle", subject.getName());
-//        return "homeworkProgress";
-//    }
-
     public String homeworkProgress(HttpSession session, Model model, Integer id) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", session.getAttribute("user"));
         Subject subject = homeworkRepository.selectSubject(id);
         List<Homework> homeworkList = homeworkRepository.listHomework(id);
         for (Homework homework : homeworkList) {
-//            Integer count = recommendRepository.getHomeworkDeadline(homework);
             Timestamp create_time=homework.getCreate_time();
             Timestamp deadline=homework.getDeadline();
             Instant ctins = create_time.toInstant();
@@ -128,18 +99,7 @@ public class RecommendServiceImpl implements RecommendService {
             Instant now = Instant.now();
             Duration pt=Duration.between(ctins,ddlins);//初始剩余时间
             Duration rmt=Duration.between(now,ddlins);//剩余时间
-            int progress=(int)(100*rmt.getSeconds()/pt.getSeconds());
-//            if (count == 0) {
-//                progress = 100;
-//            } else {
-//                Integer sum;
-//                if (recommendRepository.getHomeworkProgress(user, homework) == null) {
-//                    sum = 0;
-//                } else {
-//                    sum = recommendRepository.getHomeworkProgress(user, homework);
-//                }
-//                progress = (int) (sum * 1.0 / count);
-//            }
+            int progress=(int)(100 * rmt.getSeconds()/pt.getSeconds());
             homework.setProgress(progress);
             homework.setRmt(rmt.toMillis());
         }
