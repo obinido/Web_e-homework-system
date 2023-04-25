@@ -60,7 +60,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${originSubject.id}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>作业清单</span></a>
         </li>
@@ -91,7 +91,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${subject.id}">
+                <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${originSubject.id}">
                     <i class="fas fa-fw fa-plus-square"></i>
                     <span>添加作业</span></a>
             </li>

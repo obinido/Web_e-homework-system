@@ -50,25 +50,25 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{knowledge/subject} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{/homework/subject} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-info-circle"></i>
                 <span>课程内容</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{/homework/progress} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>作业清单</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{subject/progress} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{/subject/progress} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>知识清单</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" th:href="@{exercise/recommend} + '?id=' + ${subject.id}">
+            <a class="nav-link" th:href="@{/exercise/recommend} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-square-root-alt"></i>
                 <span>小试牛刀</span></a>
         </li>
@@ -81,7 +81,7 @@
 
         <div th:if="${user.usertype} ne '1'">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{knowledge/subject/toModify} + '?id=' + ${subject.id}">
+                <a class="nav-link" th:href="@{/knowledge/subject/toModify} + '?id=' + ${subject.id}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>修改课程</span></a>
             </li>

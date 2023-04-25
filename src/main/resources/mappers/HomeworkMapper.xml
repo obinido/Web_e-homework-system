@@ -40,12 +40,6 @@
     <update id="modifyHomework" parameterType="Homework">
         update homework set title=#{title}, content=#{content} where id=#{id}
     </update>
-<!--    <insert id="addDependency">-->
-<!--        insert into homework_dependency (homework_id, dependent_homework_id) values(#{id}, #{dep_id})-->
-<!--    </insert>-->
-<!--    <select id="dropDependency">-->
-<!--        DELETE FROM homework_dependency where homework_id=#{id}-->
-<!--    </select>-->
     <select id="listImageOfUser" parameterType="User" resultType="Image">
         SELECT * FROM image WHERE user_email=#{email}
     </select>

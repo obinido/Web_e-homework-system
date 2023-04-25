@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -100,7 +101,9 @@ public class HomeworkServiceImpl implements HomeworkService {
 
     @Override
     public String addHomework(Homework homework, HttpSession session, Model model) {
-        Subject subject = homeworkRepository.selectSubjectByName(homework.getSubject_name());
+        Subject subject = homeworkRepository.selectSubject(homework.getSubject_id());
+        homework.setCreate_time(Timestamp.valueOf(homework.getCreate_time_string().replace("T", " ") + ":00"));
+        homework.setDeadline(Timestamp.valueOf(homework.getDeadline_string().replace("T", " ") + ":00"));
         if (subject == null) {
             model.addAttribute("errorMessage", "课程不存在，请前往课程页面确认！");
             model.addAttribute("user", session.getAttribute("user"));
@@ -108,17 +111,11 @@ public class HomeworkServiceImpl implements HomeworkService {
         } else if (homeworkRepository.isHomework(subject.getId(), homework.getTitle()).size() > 0) {
             model.addAttribute("errorMessage", "作业已存在，请前往相关课程页面查看！");
             model.addAttribute("user", session.getAttribute("user"));
-            return "addKnowledge";
+            return "addHomework";
         } else {
-            homework.setSubject_id(subject.getId());
             homeworkRepository.addHomework(homework);
-            Homework addedHomework = homeworkRepository.selectHomeworkByName(homework.getSubject_id(), homework.getTitle());
-//            for (Integer dependent_id : homework.getDependency()) {
-//                if (dependent_id != -1)
-//                    homeworkRepository.addDependency(addedHomework.getId(), dependent_id);
-//            }
         }
-        return ("redirect:/subject/progress?id=" + (subject.getId()));
+        return ("redirect:/homework/progress?id=" + (subject.getId()));
     }
 
     @Override

@@ -151,6 +151,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         return "modifyKnowledge";
     }
 
+
     @Override
     public String modifySubject(Subject subject, HttpSession session, Model model) {
         knowledgeRepository.modifySubject(subject);

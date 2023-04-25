@@ -173,26 +173,11 @@
                 th:classappend="${message.isRead}==0 ? 'text-danger' : 'text-secondary'"></h6>
             <a class="m-0 font-weight-bold text-primary" th:text="${message.isRead}==0 ? '标为已读' : '标为未读'"
                th:href="@{/message/toModify} + '?id=' + ${message.id}" ></a>
-            <!--  th:href="@{knowledge/subject} + '?id=' + ${subject.id}"-->
-            <!--                        <div class="dropdown no-arrow">-->
-            <!--                            <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"-->
-            <!--                               data-toggle="dropdown"-->
-            <!--                               href="#" role="button">-->
-            <!--                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>-->
-            <!--                            </a>-->
-            <!--                            <div aria-labelledby="dropdownMenuLink"-->
-            <!--                                 class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;fade-in">-->
-            <!--                                <div class="dropdown-header" th:text="${subject.name}"></div>-->
-            <!--                                <a class="dropdown-item"-->
-            <!--                                   th:href="@{knowledge/subject} + '?id=' + ${subject.id}">查看课程</a>-->
-            <!--                                &lt;!&ndash;<a class="dropdown-item"&ndash;&gt;-->
-            <!--                                &lt;!&ndash;th:href="@{exercise/subject} + '?id=' + ${subject.id}">查看习题</a>&ndash;&gt;-->
-            <!--                            </div>-->
-            <!--                        </div>-->
             </div>
 
         <!-- Card Body -->
-        <div class="card-body" th:id="${'card-body-' + message.id}" th:text="${message.content}"></div>
+        <div class="card-body" th:id="${'card-body-' + message.id}" th:text="'发件人：' + ${message.send_out_name} +
+        '        发送时间：' + ${message.send_time} + '\r\n\r\n' + ${message.content}"></div>
       </div>
 
       </div>
@@ -258,7 +243,8 @@
 
         /*[# th:each="message : ${messages}"]*/
             var id = /*[[${'card-body-' + message.id}]]*/ 'card-body-0';
-            var content = /*[[${message.content}]]*/ '暂无内容。';
+            var content = /*[['发件人：' + ${message.send_out_name} +
+         ' 发送时间：' + ${message.send_time} + '\r\n\r\n' + ${message.content}]]*/ '暂无内容。';
             document.getElementById(id).innerHTML = marked.parse(content);
         /*[/]*/
 

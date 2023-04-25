@@ -55,7 +55,7 @@
                 <span>课程内容</span></a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>作业清单</span></a>
@@ -183,9 +183,9 @@
                                     <label>请选择课程：</label>
                                     <select class="form-control user-select" th:field="*{subject_id}">
                                         <option disabled value="-1">请选择课程</option>
-                                        <th:block th:each="subject: ${subjects}">
-                                            <option th:text="${subject.name}"
-                                                    th:value="${subject.id}"></option>
+                                        <th:block th:each="eachSubject: ${subjects}">
+                                            <option th:text="${eachSubject.name}"
+                                                    th:value="${eachSubject.id}"></option>
                                         </th:block>
                                     </select>
                                 </div>
@@ -200,12 +200,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="time-input1">请选择起始时间：</label>
-                                    <input type="datetime-local" class="form-control" id="time-input1" th:field="*{create_time}">
+                                    <input type="datetime-local" class="form-control" id="time-input1" th:field="*{create_time_string}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="time-input2">请选择截止时间：</label>
-                                    <input type="datetime-local" class="form-control" id="time-input2" th:field="*{deadline}">
+                                    <input type="datetime-local" class="form-control" id="time-input2" th:field="*{deadline_string}">
                                 </div>
 
                                 <div class="form-group">

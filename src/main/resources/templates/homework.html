@@ -51,13 +51,13 @@
                 <span>返回主页</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" th:href="@{knowledge/subject} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-info-circle"></i>
                 <span>课程内容</span></a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" th:href="@{homework/progress} + '?id=' + ${subject.id}">
                 <i class="fas fa-fw fa-book"></i>
                 <span>作业清单</span></a>
@@ -92,6 +92,12 @@
                 <a class="nav-link" th:href="@{/homework/detail/toAdd} + '?id=' + ${subject.id}">
                     <i class="fas fa-fw fa-plus-square"></i>
                     <span>添加作业</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/knowledge/detail/toAdd} + '?id=' + ${subject.id}">
+                    <i class="fas fa-fw fa-plus-square"></i>
+                    <span>添加知识</span></a>
             </li>
         </div>
 

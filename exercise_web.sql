@@ -398,8 +398,8 @@ CREATE TABLE `homework` (
 -- ----------------------------
 -- Records of homework
 -- ----------------------------
-INSERT INTO `homework` VALUES (1, 'Java第一次作业', '这是Java第一次作业！', 7, '2023-04-01 20:06:43', '2023-04-30 17:06:56');
-INSERT INTO `homework` VALUES (2, 'Java第二次作业', 'Java第二次作业', 7, '2023-04-07 06:17:07', '2023-05-07 06:17:18');
+INSERT INTO `homework` VALUES (1, 'Java第一次作业', '这是Java第一次作业！', 7, '2023-04-01 20:06:00', '2023-04-30 17:06:00');
+INSERT INTO `homework` VALUES (2, 'Java第二次作业', 'Java第二次作业', 7, '2023-04-07 06:17:00', '2023-05-07 06:17:00');
 
 -- ----------------------------
 -- Table structure for `image`
@@ -603,6 +603,10 @@ INSERT INTO `message` VALUES ('1', 'System', 'jiaxinliang@cug.edu.cn', '# 欢迎
 INSERT INTO `message` VALUES ('2', 'System', 'student1@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
 INSERT INTO `message` VALUES ('3', 'System', 'student2@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
 INSERT INTO `message` VALUES ('4', 'System', 'teacher1@cug.edu.cn', '# 欢迎注册本系统！\r\n\r\n![](images/202304109073854764.gif) \r\n\r\n## 快速入门\r\n\r\n\[点击进入主页](/HomeworkSystem/index)', '2023-04-12 20:34:05', '0');
+INSERT INTO `message` VALUES ('5', 'System', 'student1@cug.edu.cn', '您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：test \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=1) \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=1)', '2023-04-29 17:06:00', '0');
+INSERT INTO `message` VALUES ('6', 'System', 'student2@cug.edu.cn', '您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：test \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=1) \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=1)', '2023-04-29 17:06:00', '0');
+INSERT INTO `message` VALUES ('7', 'System', 'student1@cug.edu.cn', '您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：test \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=2) \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=2)', '2023-05-06 06:17:00', '0');
+INSERT INTO `message` VALUES ('8', 'System', 'student2@cug.edu.cn', '您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：test \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=2) \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=2)', '2023-05-06 06:17:00', '0');
 
 DROP TRIGGER IF EXISTS `judge`;
 DELIMITER ;;
@@ -642,20 +646,27 @@ END
 DROP TRIGGER IF EXISTS `notice`;
 DELIMITER ;;
 CREATE TRIGGER `notice` AFTER INSERT ON `homework` FOR EACH ROW BEGIN
-    DECLARE column_value VARCHAR(50);
-    DECLARE cur CURSOR FOR
+  DECLARE column_value VARCHAR(50);
+  DECLARE done INT DEFAULT 0;
+  DECLARE cur CURSOR FOR
     SELECT student_email FROM subject_map where subject_id = NEW.subject_id;
-    OPEN cur;
-    read_loop: LOOP
-    FETCH cur INTO column_value;
-            insert ignore into message (send_out_name, receive_email, content, send_time, isRead)
-            values ('System', column_value, CONCAT('您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：', NEW.title,
-                                                                                ' \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=', NEW.id,
-                                                                                ') \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=', NEW.id, ')') ,
-                                               DATE_SUB(NEW.deadline, INTERVAL 1 DAY), 0);
-    END LOOP;
+  DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+  OPEN cur;
 
-    CLOSE cur;
+  my_cur_loop:
+  LOOP FETCH cur INTO column_value;
+  IF done = 1 THEN
+      LEAVE my_cur_loop;
+  END IF;
+
+    insert ignore into message (send_out_name, receive_email, content, send_time, isRead)
+    values ('System', column_value, CONCAT('您有作业即将在24小时内截至，请尽快提交！ \r\n\r\n 作业标题：', NEW.title,
+                                           ' \r\n\r\n [查看作业详情](/HomeworkSystem/homework/detail?id=', NEW.id,
+                                           ') \r\n\r\n [直接去做题](/HomeworkSystem/exercise/hwlist?id=', NEW.id, ')') ,
+            DATE_SUB(NEW.deadline, INTERVAL 1 DAY), 0);
+
+  END LOOP my_cur_loop;
+  CLOSE cur;
 
 END
 ;;

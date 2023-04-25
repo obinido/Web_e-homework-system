@@ -2,22 +2,19 @@ package com.ljx.HomeworkSystem.entity;
 
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.Duration;
-import java.util.List;
 
 
 public class Homework {
     private int id;
     private int subject_id;
-    @NotBlank
     private String subject_name;
     @NotBlank
     private String title;
     private String content;
-//    private List<Integer> dependency;
     private Timestamp create_time;
     private Timestamp deadline;
+    private String create_time_string;
+    private String deadline_string;
     private long rmt;
 
 
@@ -54,14 +51,6 @@ public class Homework {
     public void setProgress(double progress) {
         this.progress = progress;
     }
-
-//    public List<Integer> getDependency() {
-//        return dependency;
-//    }
-//
-//    public void setDependency(List<Integer> dependency) {
-//        this.dependency = dependency;
-//    }
 
     public int getId() {
         return id;
@@ -109,5 +98,21 @@ public class Homework {
 
     public void setCreate_time(Timestamp create_time) {
         this.create_time = create_time;
+    }
+
+    public String getCreate_time_string() {
+        return create_time_string;
+    }
+
+    public void setCreate_time_string(String create_time_string) {
+        this.create_time_string = create_time_string;
+    }
+
+    public String getDeadline_string() {
+        return deadline_string;
+    }
+
+    public void setDeadline_string(String deadline_string) {
+        this.deadline_string = deadline_string;
     }
 }
