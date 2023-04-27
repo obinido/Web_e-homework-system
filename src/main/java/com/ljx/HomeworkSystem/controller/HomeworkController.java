@@ -161,4 +161,14 @@ public class HomeworkController extends AuthorityController {
         }
         return homeworkService.deleteImage(id, session, model, request);
     }
+
+    @RequestMapping("/count")
+    public String homeworkCount(HttpSession session, Model model, Integer id) {
+        User user = (User) session.getAttribute("user");
+        if (user.getUsertype() == 1) {
+            model.addAttribute("errorMessage", "您没有权限！");
+            return "errorPage";
+        }
+        return homeworkService.showCount(id, session, model);
+    }
 }

@@ -19,7 +19,7 @@
         update exercise set content=#{content}, answer=#{answer}, type=#{type} where id=#{id}
     </update>
     <insert id="recordSolutionHistory" parameterType="Answer">
-        insert into answer(user_email, exercise_id, answer, language) values(#{user_email}, #{exercise_id}, #{answer}, #{language})
+        insert ignore into answer(user_email, exercise_id, answer, language) values(#{user_email}, #{exercise_id}, #{answer}, #{language})
     </insert>
     <select id="selectAnswerByUser" resultType="Answer">
         select * from answer where exercise_id = #{id} and user_email = #{email}

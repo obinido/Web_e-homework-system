@@ -114,6 +114,7 @@ public class HomeworkServiceImpl implements HomeworkService {
             return "addHomework";
         } else {
             homeworkRepository.addHomework(homework);
+//            homeworkRepository.addHomeworkCount(count);
         }
         return ("redirect:/homework/progress?id=" + (subject.getId()));
     }
@@ -209,5 +210,16 @@ public class HomeworkServiceImpl implements HomeworkService {
         filePath.delete();
         homeworkRepository.deleteImage(id);
         return "redirect:/homework/toAddImage";
+    }
+
+    @Override
+    public String showCount(Integer id, HttpSession session, Model model) {
+        Homework homework = homeworkRepository.selectHomework(id);
+        Subject subject = homeworkRepository.selectSubject(homework.getSubject_id());
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("subject", subject);
+        model.addAttribute("countList", homeworkRepository.listCount(id));
+        model.addAttribute("sum", recommendRepository.getHomeworkNum(homework));
+        return "homeworkCount";
     }
 }

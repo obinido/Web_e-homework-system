@@ -22,6 +22,7 @@ public interface ExerciseRepository {
 
     int recordSolutionHistory(Answer answer);
 
+
     List<Answer> selectAnswerByUser(@Param("email") String email, @Param("id") Integer id);
 
     List<Answer> selectAnswerByUserAndSubject(@Param("email") String email, @Param("id") Integer id);

@@ -34,4 +34,6 @@ public interface HomeworkService {
     String addImage(Image image, HttpSession session, Model model, HttpServletRequest request);
 
     String deleteImage(Integer id, HttpSession session, Model model, HttpServletRequest request);
+
+    String showCount(Integer id, HttpSession session, Model model);
 }

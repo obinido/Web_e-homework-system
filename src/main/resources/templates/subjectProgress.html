@@ -205,7 +205,7 @@
                                                 <a class="dropdown-item"
                                                    th:href="@{/knowledge/detail} + '?id=' + ${knowledge.id}">查看知识</a>
                                                 <a class="dropdown-item"
-                                                   th:href="@{/exercise/list} + '?id=' + ${knowledge.id}">查看习题</a>
+                                                   th:href="@{/exercise/list} + '?id=' + ${knowledge.id}">完成习题</a>
                                                 <div th:if="${user.usertype} ne '1'">
                                                     <a class="dropdown-item"
                                                        th:href="@{/knowledge/detail/toModify} + '?id=' + ${knowledge.id}">修改知识</a>

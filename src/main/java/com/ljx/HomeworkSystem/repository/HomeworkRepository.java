@@ -4,11 +4,14 @@ import com.ljx.HomeworkSystem.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
 public interface HomeworkRepository {
     List<Subject> listSubject(User user);
+
+    List<HomeworkCount> listHomeworkCount(HomeworkCount HomeworkCount);
 
     Subject selectSubject(Integer id);
 
@@ -38,9 +41,21 @@ public interface HomeworkRepository {
 
     List<Image> listImageOfUser(User user);
 
+//    int addHomeworkCount(HomeworkCount count);
+//
+//    int updateSubmit_date(Timestamp date);
+//
+//    int updateHomeworkProgress();
+//
+//    int updateHomeworkScore();
+
+    int addMap(Mapping mapping);
+
     int addImage(@Param("user") User user, @Param("image") Image image);
 
     int deleteImage(Integer id);
 
     Image selectImage(Integer id);
+
+    List<HomeworkCount> listCount(Integer homework_id);
 }

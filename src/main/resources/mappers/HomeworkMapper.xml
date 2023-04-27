@@ -52,4 +52,7 @@
     <select id="selectImage" resultType="Image">
         select * from image where id=#{id} limit 1
     </select>
+    <select id="listCount" parameterType="Integer" resultType="HomeworkCount">
+        select * from homework_count where homework_id=#{homework_id}
+    </select>
 </mapper>
