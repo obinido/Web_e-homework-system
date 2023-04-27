@@ -18,6 +18,8 @@ public interface ExerciseRepository {
 
     int addExercise(Exercise exercise);
 
+    int addhwExercise(Exercise exercise);
+
     int modifyExercise(Exercise exercise);
 
     int recordSolutionHistory(Answer answer);

@@ -15,6 +15,9 @@
     <insert id="addExercise" parameterType="Exercise">
         insert into exercise (knowledge_id, answer, content, type) values(#{knowledge_id}, #{answer}, #{content}, #{type})
     </insert>
+    <insert id="addhwExercise" parameterType="Exercise">
+        insert into exercise (homework_id,knowledge_id,answer, content, type) values(#{homework_id},#{knowledge_id},#{answer}, #{content}, #{type})
+    </insert>
     <update id="modifyExercise" parameterType="Exercise">
         update exercise set content=#{content}, answer=#{answer}, type=#{type} where id=#{id}
     </update>

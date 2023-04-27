@@ -7,11 +7,13 @@ public class Exercise {
     private int knowledge_id;
 
     private int homework_id;
-    @NotBlank
+
+
+
     private String subject_name;
-    @NotBlank
+
     private String knowledge_name;
-    @NotBlank
+
     private String homework_name;
     private String content;
     private String answer;
@@ -97,4 +99,6 @@ public class Exercise {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+
 }

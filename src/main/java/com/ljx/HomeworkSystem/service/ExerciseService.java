@@ -15,6 +15,10 @@ public interface ExerciseService {
 
     String addExercise(Exercise exercise, HttpSession session, Model model);
 
+    String toAddhwExercise(Exercise exercise, HttpSession session, Model model, Integer id);
+
+    String addhwExercise(Exercise exercise, HttpSession session, Model model);
+
     String toModifyExercise(Integer id, HttpSession session, Model model);
 
     String modifyExercise(Exercise exercise, HttpSession session, Model model);

@@ -45,6 +45,31 @@ public class ExerciseController extends AuthorityController {
         return exerciseService.addExercise(exercise, session, model);
     }
 
+    @RequestMapping("/tohwAdd")
+    public String toAddhwExercise(@ModelAttribute("exercise") Exercise exercise, HttpSession session, Model model, Integer id) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", session.getAttribute("user"));
+        if (user.getUsertype() == 1) {
+            model.addAttribute("errorMessage", "您没有权限！");
+            return "errorPage";
+        }
+        return exerciseService.toAddhwExercise(exercise, session, model, id);
+    }
+
+    @RequestMapping("/hwadd")
+    public String addhwExercise(@ModelAttribute("exercise") @Validated Exercise exercise, BindingResult rs, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        if (user.getUsertype() == 1) {
+            model.addAttribute("errorMessage", "您没有权限！");
+            return "errorPage";
+        }
+        if (rs.hasErrors()) // 验证失败
+        {
+            return "addExercise";
+        }
+        return exerciseService.addhwExercise(exercise, session, model);
+    }
+
     @RequestMapping("/list")
     public String exerciseList(HttpSession session, Model model, Integer id) {
         Answer answer = new Answer();

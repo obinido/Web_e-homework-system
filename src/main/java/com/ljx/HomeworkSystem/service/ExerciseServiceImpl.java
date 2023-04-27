@@ -107,6 +107,41 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
+    public String toAddhwExercise(Exercise exercise, HttpSession session, Model model, Integer id) {
+        Homework homework = homeworkRepository.selectHomework(id);
+        Subject subject = homeworkRepository.selectSubject(homework.getSubject_id());
+        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("originHomework", homework);
+        model.addAttribute("originSubject", subject);
+        model.addAttribute("knowledgeList", knowledgeRepository.listKnowledge(subject.getId()));
+        exercise.setSubject_name(subject.getName());
+        exercise.setHomework_name(homework.getTitle());
+        return "addhwExercise";
+    }
+
+    @Override
+    public String addhwExercise(Exercise exercise, HttpSession session, Model model) {
+        Subject subject = homeworkRepository.selectSubjectByName(exercise.getSubject_name());
+        if (subject == null) {
+            model.addAttribute("errorMessage", "课程不存在，请前往课程页面确认！");
+            model.addAttribute("user", session.getAttribute("user"));
+            return "addhwExercise";
+        }
+        Homework homework = homeworkRepository.selectHomeworkByName(subject.getId(), exercise.getHomework_name());
+        Knowledge knowledge = knowledgeRepository.selectKnowledge(exercise.getKnowledge_id());
+        if (homework == null) {
+            model.addAttribute("errorMessage", "作业不存在，请前往相关课程页面确认！");
+            model.addAttribute("user", session.getAttribute("user"));
+            return "addhwExercise";
+        } else {
+            exercise.setHomework_id(homework.getId());
+            exercise.setKnowledge_id(knowledge.getId());
+            exerciseRepository.addhwExercise(exercise);
+        }
+        return ("redirect:/exercise/hwlist?id=" + (homework.getId()));
+    }
+
+    @Override
     public String toModifyExercise(Integer id, HttpSession session, Model model) {
         Exercise exercise = exerciseRepository.selectExerciseByID(id);
         Knowledge knowledge = knowledgeRepository.selectKnowledge(exercise.getKnowledge_id());
