@@ -183,8 +183,10 @@
                 <tr>
                   <th width="20%">作业名称</th>
                   <th width="8%">姓名</th>
-                  <th>提交时间</th>
-                  <th>作业成绩</th>
+                  <th width="8%">班级</th>
+                  <th width="12%">学号</th>
+                  <th width="17%">提交时间</th>
+                  <th width="9%">作业成绩</th>
                   <th>作业进度</th>
                 </tr>
                 </thead>
@@ -192,6 +194,8 @@
                 <tr th:each="count : ${countList}">
                   <td th:text="${count.homework_title}"></td>
                   <td th:text="${count.user_name}"></td>
+                  <td th:text="${count.user_class}"></td>
+                  <td th:text="${count.user_id}"></td>
                   <td th:text="${count.submit_time}== null? '未提交':${count.submit_time}"></td>
                   <td th:text="${sum}==0?'0':${count.homework_score / sum}"></td>
                   <td>

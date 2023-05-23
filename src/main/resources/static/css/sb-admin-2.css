@@ -11715,21 +11715,21 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url("http://sfrz.cug.edu.cn/tpass/comm/image/login-pic-02.png");
+    background: url("../img/111.jpg");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .bg-register-image {
-    background: url("http://sfrz.cug.edu.cn/tpass/comm/image/login-pic-01.png");
+    background: url("../img/222.jpg");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .bg-password-image {
-    background: url("https://www.cug.edu.cn/__local/B/CA/1E/FEB82742AE33F6EF8176AE7AF64_0804DE5A_1A97E.jpg");
+    background: url("../img/111.jpg");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

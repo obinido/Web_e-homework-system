@@ -178,13 +178,13 @@
                         <div class="card-body">
                             <form class="user" method="post" th:action="@{/exercise/add}" th:object="${exercise}">
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="请输入课程名称" th:field="*{subject_name}"
+                                    <input class="form-control" placeholder="" readonly th:field="*{subject_name}"
                                            type="text">
                                     <span th:errors="*{subject_name}"></span>
                                 </div>
 
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="请输入知识标题" th:field="*{knowledge_name}"
+                                    <input class="form-control" placeholder="" readonly th:field="*{knowledge_name}"
                                            type="text">
                                     <span th:errors="*{knowledge_name}"></span>
                                 </div>

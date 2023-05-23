@@ -8,6 +8,8 @@ public class HomeworkCount {
     private String homework_title;
     private String user_email;
     private String user_name;
+    private String user_class;
+    private String user_id;
     private Timestamp submit_time;
     private int homework_score = -1;
     private int homework_progress = -1;
@@ -50,6 +52,22 @@ public class HomeworkCount {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public String getUser_class() {
+        return user_class;
+    }
+
+    public void setUser_class(String user_class) {
+        this.user_class = user_class;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public Timestamp getSubmit_time() {
